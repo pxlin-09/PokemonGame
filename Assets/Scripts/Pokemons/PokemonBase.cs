@@ -45,6 +45,10 @@ public class PokemonBase : ScriptableObject
 
     public int Speed { get { return speed; } }
 
+    public Sprite FrontSprite { get { return frontSprite; } }
+
+    public Sprite BackSprite { get { return backSprite; } }
+
     public List<LearnableMove> LearnableMoves { get { return learnableMoves; } }
 
 }

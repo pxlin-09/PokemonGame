@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e124e85c8f8d3fe4090013798c6f7590, type: 3}
   m_Name: Charmander
   m_EditorClassIdentifier: 
-  _name: 
+  _name: Charmander
   description: 
   frontSprite: {fileID: 21300000, guid: cd259d9d4f8ba2749a16d1cc64d46bec, type: 3}
   backSprite: {fileID: 21300000, guid: ed8e1d9976a1fd94d961840d8f6e7764, type: 3}
