@@ -5,7 +5,7 @@ using TMPro;
 public class BattleDialogBox : MonoBehaviour
 {
     [SerializeField] int lettersPerSecond;
-
+    [SerializeField] Color highlightedColor;
     [SerializeField] TextMeshProUGUI dialogText;
     [SerializeField] GameObject actionSelector;
     [SerializeField] GameObject moveSelector;
@@ -59,6 +59,19 @@ public class BattleDialogBox : MonoBehaviour
         moveSelector.SetActive(enable);
         moveDetails.SetActive(enable);
         SplitLine.SetActive(enable);
+    }
+
+    public void UpdateActionSelection(int selectedAction)
+    {
+        for (int i = 0; i < actionTexts.Count; i++)
+        {
+            if (i == selectedAction)
+            {
+                actionTexts[i].color = highlightedColor;
+            } else {
+                actionTexts[i].color = Color.black;
+            }
+        }
     }
 
 }

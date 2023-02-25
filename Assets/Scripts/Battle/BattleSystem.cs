@@ -56,8 +56,35 @@ public class BattleSystem : MonoBehaviour
         dialogBox.EnableActionSelector(true);
     }
 
+    void PlayerMove()
+    {
+        state = BattleState.PlayerMove;
+        dialogBox.EnableActionSelector(false);
+        dialogBox.EnableDialogText(false);
+        dialogBox.EnableMoveSelector(true);
+    }
     void HandleActionSelection()
     {
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (currentAction < 1) ++currentAction;
+        } else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            if (currentAction > 0) --currentAction;
+        }
+
+        dialogBox.UpdateActionSelection(currentAction);
+
+        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+            if (currentAction == 0) 
+            {
+                //Debug.Log("Fight");
+                PlayerMove();
+            } else {
+                Debug.Log("Run");
+            }
+        } 
 
     }
 }
