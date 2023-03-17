@@ -40,6 +40,7 @@ public class BattleSystem : MonoBehaviour
         enemyUnit.Setup();
         enemyHud.SetData(enemyUnit.Pokemon);
 
+        dialogBox.SetMoveNames(playerUnit.Pokemon.Moves);
         yield return StartCoroutine(dialogBox.TypeDialog($"A wild {enemyUnit.Pokemon.Base.Name} appeared."));
         yield return new WaitForSeconds(0.7f);
 
@@ -63,6 +64,7 @@ public class BattleSystem : MonoBehaviour
         dialogBox.EnableDialogText(false);
         dialogBox.EnableMoveSelector(true);
     }
+
     void HandleActionSelection()
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))
@@ -75,7 +77,7 @@ public class BattleSystem : MonoBehaviour
 
         dialogBox.UpdateActionSelection(currentAction);
 
-        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             if (currentAction == 0) 
             {
@@ -85,6 +87,5 @@ public class BattleSystem : MonoBehaviour
                 Debug.Log("Run");
             }
         } 
-
     }
 }
