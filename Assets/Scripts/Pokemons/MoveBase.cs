@@ -21,4 +21,6 @@ public class MoveBase : ScriptableObject
     public int Power { get { return power; } }
 
     public int Accuracy { get { return accuracy; } }
+
+    public PokemonType Type {  get { return type; } }
 }

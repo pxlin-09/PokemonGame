@@ -10573,8 +10573,8 @@ MonoBehaviour:
   - {fileID: 938793002}
   - {fileID: 54217789}
   - {fileID: 303884215}
-  ppText: {fileID: 0}
-  type: {fileID: 0}
+  ppText: {fileID: 1639714811}
+  type: {fileID: 1449573268}
 --- !u!1 &1639714809
 GameObject:
   m_ObjectHideFlags: 0

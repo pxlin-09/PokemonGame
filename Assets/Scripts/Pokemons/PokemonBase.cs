@@ -35,7 +35,7 @@ public class PokemonBase : ScriptableObject
 
     public int MaxHp { get { return maxHp; } }
 
-    public int Attack { get { return Attack; } }
+    public int Attack { get { return attack; } }
 
     public int Defense { get { return defense; } }
 

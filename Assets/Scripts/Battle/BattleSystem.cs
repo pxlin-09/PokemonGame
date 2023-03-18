@@ -17,6 +17,7 @@ public class BattleSystem : MonoBehaviour
 
     BattleState state;
     int currentAction;
+    int currentMove;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +30,9 @@ public class BattleSystem : MonoBehaviour
         if (state == BattleState.PlayerAction)
         {
             HandleActionSelection();
+        } else if (state == BattleState.PlayerMove)
+        {
+            HandleMoveSelection();
         }
     }
 
@@ -65,6 +69,50 @@ public class BattleSystem : MonoBehaviour
         dialogBox.EnableMoveSelector(true);
     }
 
+    IEnumerator PerformPlayerMove()
+    {
+        state = BattleState.Busy;
+        var move = playerUnit.Pokemon.Moves[currentMove];
+        yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name}" +
+            $"" +
+            $" used {move.Base.Name}");
+
+        yield return new WaitForSeconds(0.7f);
+
+        bool fainted = enemyUnit.Pokemon.TakeDmg(move, playerUnit.Pokemon);
+        enemyHud.UpdateHP();
+        if (fainted)
+        {
+            yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.Base.Name} Fainted.");
+        } else
+        {
+            StartCoroutine(EnemyMove());
+        }
+
+    }
+
+    IEnumerator EnemyMove()
+    {
+        state = BattleState.EnemyMove;
+        var move = enemyUnit.Pokemon.GetRandMove();
+        yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.Base.Name}" +
+            $"" +
+            $" used {move.Base.Name}");
+
+        yield return new WaitForSeconds(0.7f);
+
+        bool fainted = playerUnit.Pokemon.TakeDmg(move, playerUnit.Pokemon);
+        playerHud.UpdateHP();
+        if (fainted)
+        {
+            yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} Fainted.");
+        }
+        else
+        {
+            PlayerAction();
+        }
+    }
+
     void HandleActionSelection()
     {
         if (Input.GetKeyDown(KeyCode.DownArrow))
@@ -87,5 +135,44 @@ public class BattleSystem : MonoBehaviour
                 Debug.Log("Run");
             }
         } 
+    }
+
+    void HandleMoveSelection()
+    {
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            if (currentMove + 1 < playerUnit.Pokemon.Moves.Count)
+            {
+                currentMove++;
+            }
+        } else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            if (currentMove - 1 >= 0)
+            {
+                currentMove--;
+            }
+        } else if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (currentMove + 2 < playerUnit.Pokemon.Moves.Count)
+            {
+                currentMove += 2;
+            }
+        } else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            if (currentMove - 2 >= 0)
+            {
+                currentMove-=2;
+            }
+        }
+
+        dialogBox.UpdateMoveSelection(currentMove,
+            playerUnit.Pokemon.Moves[currentMove]);
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            dialogBox.EnableMoveSelector(false);
+            dialogBox.EnableDialogText(true);
+            StartCoroutine(PerformPlayerMove());
+        }
     }
 }
