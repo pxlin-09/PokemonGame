@@ -76,6 +76,9 @@ public class BattleSystem : MonoBehaviour
             $"" +
             $" used {move.Base.Name}");
 
+        playerUnit.PlayerAttackAnimation();
+        yield return new WaitForSeconds(0.5f);
+
         var damageDetails = enemyUnit.Pokemon.TakeDmg(move, playerUnit.Pokemon);
         yield return enemyHud.UpdateHP();
         yield return ShowDamageDetails(damageDetails);
@@ -96,6 +99,9 @@ public class BattleSystem : MonoBehaviour
         yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.Base.Name}" +
             $"" +
             $" used {move.Base.Name}");
+
+        enemyUnit.PlayerAttackAnimation();
+        yield return new WaitForSeconds(0.5f);
 
         var damageDetails = playerUnit.Pokemon.TakeDmg(move, playerUnit.Pokemon);
         yield return playerHud.UpdateHP();
