@@ -76,15 +76,16 @@ public class BattleSystem : MonoBehaviour
             $"" +
             $" used {move.Base.Name}");
 
-        playerUnit.PlayerAttackAnimation();
+        playerUnit.PlayerAttackAnimation(move);
         yield return new WaitForSeconds(0.5f);
-
+        enemyUnit.PlayerHitAnimation();
         var damageDetails = enemyUnit.Pokemon.TakeDmg(move, playerUnit.Pokemon);
         yield return enemyHud.UpdateHP();
         yield return ShowDamageDetails(damageDetails);
         if (damageDetails.Fainted)
         {
             yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.Base.Name} Fainted.");
+            enemyUnit.PlayerFaintAnimation();
         } else
         {
             StartCoroutine(EnemyMove());
@@ -100,15 +101,16 @@ public class BattleSystem : MonoBehaviour
             $"" +
             $" used {move.Base.Name}");
 
-        enemyUnit.PlayerAttackAnimation();
+        enemyUnit.PlayerAttackAnimation(move);
         yield return new WaitForSeconds(0.5f);
-
+        playerUnit.PlayerHitAnimation();
         var damageDetails = playerUnit.Pokemon.TakeDmg(move, playerUnit.Pokemon);
         yield return playerHud.UpdateHP();
         yield return ShowDamageDetails(damageDetails);
         if (damageDetails.Fainted)
         {
             yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} Fainted.");
+            playerUnit.PlayerFaintAnimation();
         }
         else
         {

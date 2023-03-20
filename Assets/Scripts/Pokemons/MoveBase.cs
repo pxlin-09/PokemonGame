@@ -13,6 +13,9 @@ public class MoveBase : ScriptableObject
     [SerializeField] int pp;
     [SerializeField] int power;
     [SerializeField] int accuracy;
+    [SerializeField] GameObject vfxPrefab;
+
+    public GameObject VfxPrefab { get { return vfxPrefab; } }
 
     public string Name { get { return _name; } }
 

@@ -73,6 +73,7 @@ public class Pokemon
         int damage = Mathf.FloorToInt(d * modifiers);
 
         HP -= damage;
+        if (HP <= 0) { HP = 0; }
 
         var damageDetails = new DamageDetails()
         {
