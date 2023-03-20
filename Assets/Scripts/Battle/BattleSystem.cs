@@ -46,7 +46,6 @@ public class BattleSystem : MonoBehaviour
 
         dialogBox.SetMoveNames(playerUnit.Pokemon.Moves);
         yield return StartCoroutine(dialogBox.TypeDialog($"A wild {enemyUnit.Pokemon.Base.Name} appeared."));
-        yield return new WaitForSeconds(0.7f);
 
         PlayerAction();
     }
@@ -77,11 +76,10 @@ public class BattleSystem : MonoBehaviour
             $"" +
             $" used {move.Base.Name}");
 
-        yield return new WaitForSeconds(0.7f);
-
-        bool fainted = enemyUnit.Pokemon.TakeDmg(move, playerUnit.Pokemon);
+        var damageDetails = enemyUnit.Pokemon.TakeDmg(move, playerUnit.Pokemon);
         yield return enemyHud.UpdateHP();
-        if (fainted)
+        yield return ShowDamageDetails(damageDetails);
+        if (damageDetails.Fainted)
         {
             yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.Base.Name} Fainted.");
         } else
@@ -99,17 +97,34 @@ public class BattleSystem : MonoBehaviour
             $"" +
             $" used {move.Base.Name}");
 
-        yield return new WaitForSeconds(0.7f);
-
-        bool fainted = playerUnit.Pokemon.TakeDmg(move, playerUnit.Pokemon);
+        var damageDetails = playerUnit.Pokemon.TakeDmg(move, playerUnit.Pokemon);
         yield return playerHud.UpdateHP();
-        if (fainted)
+        yield return ShowDamageDetails(damageDetails);
+        if (damageDetails.Fainted)
         {
             yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} Fainted.");
         }
         else
         {
             PlayerAction();
+        }
+    }
+
+    IEnumerator ShowDamageDetails(DamageDetails damageDetails)
+    {
+        if (damageDetails.Critical > 1f)
+        {
+            yield return dialogBox.TypeDialog("A critical hit!");
+        }
+
+        if (damageDetails.Effect > 1f)
+        {
+            yield return dialogBox.TypeDialog("It's super effective!");
+        }
+
+        if (damageDetails.Effect < 1f)
+        {
+            yield return dialogBox.TypeDialog("It's not very effective...");
         }
     }
 

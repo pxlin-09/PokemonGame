@@ -29,6 +29,10 @@ public class PokemonBase : ScriptableObject
 
 
     // using c# properties
+    public PokemonType Type1 { get { return type1; } }
+
+    public PokemonType Type2 { get { return type2; } }
+
     public string Name { get { return _name; } }
 
     public string Description { get { return description; } }
@@ -86,7 +90,7 @@ public enum PokemonType
 
 public class TypeChart
 {
-    float[][] chart =
+    static float[][] chart =
     {
         //           nor fir wat ele gra ice fig poi gro fly psy bug roc gho dra 
         new float[] { 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f,.5f, 0f, 1f}, // normal
@@ -105,4 +109,16 @@ public class TypeChart
         new float[] { 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 2f, 1f, 1f, 2f, 1f}, // ghost
         new float[] { 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 2f}  // dragon
     };
+
+    public static float GetEffectiveness(PokemonType attackType, PokemonType defenseType)
+    {
+        if (attackType == PokemonType.None || defenseType == PokemonType.None)
+        {
+            return 1;
+        }
+
+        int row = (int)attackType - 1;
+        int col = (int)defenseType - 1;
+        return chart[row][col];
+    }
 }
