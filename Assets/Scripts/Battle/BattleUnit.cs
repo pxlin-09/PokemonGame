@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class BattleUnit : MonoBehaviour
 {
@@ -11,6 +12,15 @@ public class BattleUnit : MonoBehaviour
     [SerializeField] bool isPlayerUnit;
 
     public Pokemon Pokemon { get; set; }
+
+    Image img;
+    Vector3 origin;
+
+    private void Awake()
+    {
+        img = GetComponent<Image>();
+        origin = img.transform.localPosition;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -28,9 +38,23 @@ public class BattleUnit : MonoBehaviour
         Pokemon = new Pokemon(_base, level);
         if (isPlayerUnit)
         {
-            GetComponent<Image>().sprite = Pokemon.Base.BackSprite;
+            img.sprite = Pokemon.Base.BackSprite;
         } else {
-            GetComponent<Image>().sprite = Pokemon.Base.FrontSprite;
+            img.sprite = Pokemon.Base.FrontSprite;
         }
+        PlayerEnterAnimation();
+    }
+
+    public void PlayerEnterAnimation()
+    {
+        if (isPlayerUnit)
+        {
+            img.transform.localPosition = new Vector3(-500f, origin.y);
+        } else
+        {
+            img.transform.localPosition = new Vector3(500f, origin.y);
+        }
+
+        img.transform.DOLocalMoveX(origin.x, 0.7f);
     }
 }
