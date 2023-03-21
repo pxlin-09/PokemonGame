@@ -15,6 +15,9 @@ public class BattleSystem : MonoBehaviour
 
     [SerializeField] BattleDialogBox dialogBox;
 
+    PokemonParty pokemonParty;
+    Pokemon wildPokemon;
+
     // Observer design pattern: gameController observes when battleSystem
     // encounters a pokemon and changes state to battle
     public event Action<bool> onBattleOver;
@@ -24,8 +27,10 @@ public class BattleSystem : MonoBehaviour
     int currentMove;
 
     // Start is called before the first frame update
-    public void StartBattle()
+    public void StartBattle(PokemonParty pokemonParty, Pokemon wildPokemon)
     {
+        this.pokemonParty = pokemonParty;
+        this.wildPokemon = wildPokemon;
         StartCoroutine(SetupBattle());
     }
 
@@ -42,10 +47,10 @@ public class BattleSystem : MonoBehaviour
 
     public IEnumerator SetupBattle()
     {
-        playerUnit.Setup();
+        playerUnit.Setup(pokemonParty.getFirstNotFaintedPokemon());
         playerHud.SetData(playerUnit.Pokemon);
 
-        enemyUnit.Setup();
+        enemyUnit.Setup(wildPokemon);
         enemyHud.SetData(enemyUnit.Pokemon);
 
         dialogBox.SetMoveNames(playerUnit.Pokemon.Moves);

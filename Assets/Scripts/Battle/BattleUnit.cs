@@ -8,8 +8,6 @@ using static UnityEngine.GraphicsBuffer;
 public class BattleUnit : MonoBehaviour
 {
 
-    [SerializeField] PokemonBase _base;
-    [SerializeField] int level;
     [SerializeField] bool isPlayerUnit;
 
     public Pokemon Pokemon { get; set; }
@@ -36,9 +34,9 @@ public class BattleUnit : MonoBehaviour
         
     }
 
-    public void Setup()
+    public void Setup(Pokemon pokemon)
     {
-        Pokemon = new Pokemon(_base, level);
+        Pokemon = pokemon;
         if (isPlayerUnit)
         {
             img.sprite = Pokemon.Base.BackSprite;
@@ -78,7 +76,7 @@ public class BattleUnit : MonoBehaviour
             vfx = Instantiate(move.Base.VfxPrefab, img.transform.position, Quaternion.identity);
             rotateVfx(vfx, target);
             Vector3 vec = new Vector3(target.position.x, target.position.y);
-            seq.Join(vfx.transform.DOLocalMove(vec, 0.45f));
+            seq.Append(vfx.transform.DOLocalMove(vec, 0.45f));
             seq.AppendCallback(() => Destroy(vfx));
         }
         seq.Append(img.transform.DOLocalMoveX(origin.x, 0.25f));

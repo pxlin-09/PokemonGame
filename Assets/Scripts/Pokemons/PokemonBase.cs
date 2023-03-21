@@ -45,7 +45,7 @@ public class PokemonBase : ScriptableObject
 
     public int SpAttack { get { return spAttack; } }
 
-    public int SpDefense { get { return SpDefense; } }
+    public int SpDefense { get { return spDefense; } }
 
     public int Speed { get { return speed; } }
 

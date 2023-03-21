@@ -616,6 +616,7 @@ GameObject:
   - component: {fileID: 288011804}
   - component: {fileID: 288011803}
   - component: {fileID: 288011806}
+  - component: {fileID: 288011807}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -730,6 +731,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &288011807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288011802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48b3d1b80259547a8a8a8cec8205a248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pokemons:
+  - _base: {fileID: 11400000, guid: 19733b2e43402014d865672205b6d3ed, type: 2}
+    level: 7
 --- !u!1 &294586254
 GameObject:
   m_ObjectHideFlags: 0
@@ -1163,8 +1179,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c89c707897555641a86f45a31476cfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _base: {fileID: 11400000, guid: 19733b2e43402014d865672205b6d3ed, type: 2}
-  level: 5
   isPlayerUnit: 0
 --- !u!114 &472870792
 MonoBehaviour:
@@ -10168,8 +10182,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c89c707897555641a86f45a31476cfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _base: {fileID: 11400000, guid: f377fd8f7d17048c99ea759303c2660a, type: 2}
-  level: 7
   isPlayerUnit: 1
 --- !u!1 &1449573266
 GameObject:
@@ -10921,6 +10933,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1911109139}
   - component: {fileID: 1911109138}
+  - component: {fileID: 1911109140}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -10958,6 +10971,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1911109140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1911109137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 420758b65002c42d2bdb4a9154a518ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wildPokemons:
+  - _base: {fileID: 11400000, guid: 47192ab7fb3319945b1361e21dcb0548, type: 2}
+    level: 4
+  - _base: {fileID: 11400000, guid: 19733b2e43402014d865672205b6d3ed, type: 2}
+    level: 4
+  - _base: {fileID: 11400000, guid: f377fd8f7d17048c99ea759303c2660a, type: 2}
+    level: 4
 --- !u!1 &1936934970
 GameObject:
   m_ObjectHideFlags: 0
