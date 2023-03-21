@@ -47,7 +47,7 @@ public class BattleSystem : MonoBehaviour
 
     public IEnumerator SetupBattle()
     {
-        playerUnit.Setup(pokemonParty.getFirstNotFaintedPokemon());
+        playerUnit.Setup(pokemonParty.getHealthyPokemon());
         playerHud.SetData(playerUnit.Pokemon);
 
         enemyUnit.Setup(wildPokemon);
@@ -127,6 +127,19 @@ public class BattleSystem : MonoBehaviour
             playerUnit.PlayerFaintAnimation();
 
             yield return new WaitForSeconds(1f);
+
+            var nextPokemon = pokemonParty.getHealthyPokemon();
+            if (nextPokemon != null)
+            {
+                playerUnit.Setup(nextPokemon);
+                playerHud.SetData(playerUnit.Pokemon);
+
+                dialogBox.SetMoveNames(playerUnit.Pokemon.Moves);
+                yield return StartCoroutine(dialogBox.TypeDialog($"Go {playerUnit.Pokemon.Base.Name}!"));
+
+                PlayerAction();
+            }
+
             onBattleOver(false);
         }
         else

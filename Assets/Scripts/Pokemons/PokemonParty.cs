@@ -15,7 +15,7 @@ public class PokemonParty : MonoBehaviour
         }    
     }
 
-    public Pokemon getFirstNotFaintedPokemon()
+    public Pokemon getHealthyPokemon()
     {
         return pokemons.Where(x => x.HP > 0).FirstOrDefault();
     }

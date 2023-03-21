@@ -746,6 +746,8 @@ MonoBehaviour:
   pokemons:
   - _base: {fileID: 11400000, guid: 19733b2e43402014d865672205b6d3ed, type: 2}
     level: 7
+  - _base: {fileID: 11400000, guid: 47192ab7fb3319945b1361e21dcb0548, type: 2}
+    level: 7
 --- !u!1 &294586254
 GameObject:
   m_ObjectHideFlags: 0
