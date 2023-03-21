@@ -76,7 +76,7 @@ public class BattleUnit : MonoBehaviour
             vfx = Instantiate(move.Base.VfxPrefab, img.transform.position, Quaternion.identity);
             rotateVfx(vfx, target);
             Vector3 vec = new Vector3(target.position.x, target.position.y);
-            seq.Append(vfx.transform.DOLocalMove(vec, 0.45f));
+            seq.Join(vfx.transform.DOLocalMove(vec, 0.45f));
             seq.AppendCallback(() => Destroy(vfx));
         }
         seq.Append(img.transform.DOLocalMoveX(origin.x, 0.25f));

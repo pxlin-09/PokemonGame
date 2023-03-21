@@ -19,4 +19,12 @@ public class PokemonParty : MonoBehaviour
     {
         return pokemons.Where(x => x.HP > 0).FirstOrDefault();
     }
+
+    public List<Pokemon> Pokemons
+    {
+        get
+        {
+            return pokemons;
+        }
+    }
 }

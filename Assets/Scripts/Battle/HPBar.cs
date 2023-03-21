@@ -42,7 +42,7 @@ public class HPBar : MonoBehaviour
         health.transform.localScale = new Vector3(newHp, 1f);
     }
 
-    private void SetColor(float percent)
+    public void SetColor(float percent)
     {
         string col = "";
         if (0.5 <= percent)

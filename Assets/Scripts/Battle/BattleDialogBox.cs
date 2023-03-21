@@ -43,7 +43,7 @@ public class BattleDialogBox : MonoBehaviour
             yield return new WaitForSeconds(1f/lettersPerSecond);
         }
 
-        yield return new WaitForSeconds(.7f);
+        yield return new WaitForSeconds(1f);
     }
 
     public void EnableDialogText(bool enable)
