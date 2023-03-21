@@ -61,4 +61,13 @@ public class HPBar : MonoBehaviour
             health.GetComponent<Image>().color = newCol;
         }
     }
+
+    public void ResetColorToGreen()
+    {
+        Color newCol = Color.green;
+        if (ColorUtility.TryParseHtmlString(greenHex, out newCol))
+        {
+            health.GetComponent<Image>().color = newCol;
+        }
+    }
 }

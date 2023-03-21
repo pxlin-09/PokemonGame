@@ -45,6 +45,7 @@ public class BattleUnit : MonoBehaviour
         } else {
             img.sprite = Pokemon.Base.FrontSprite;
         }
+        img.color = originCol;
         PlayerEnterAnimation();
     }
 

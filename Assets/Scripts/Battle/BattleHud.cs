@@ -29,6 +29,7 @@ public class BattleHud : MonoBehaviour
         nameText.text = pokemon.Base.Name;
         levelText.text = "Lvl " + pokemon.Level;
         hpBar.SetHP((float) pokemon.HP / pokemon.MaxHp);
+        hpBar.ResetColorToGreen();
     }
 
     public IEnumerator UpdateHP()

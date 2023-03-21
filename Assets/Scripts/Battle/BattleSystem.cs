@@ -15,12 +15,16 @@ public class BattleSystem : MonoBehaviour
 
     [SerializeField] BattleDialogBox dialogBox;
 
+    // Observer design pattern: gameController observes when battleSystem
+    // encounters a pokemon and changes state to battle
+    public event Action<bool> onBattleOver;
+
     BattleState state;
     int currentAction;
     int currentMove;
 
     // Start is called before the first frame update
-    void Start()
+    public void StartBattle()
     {
         StartCoroutine(SetupBattle());
     }
@@ -72,6 +76,7 @@ public class BattleSystem : MonoBehaviour
     {
         state = BattleState.Busy;
         var move = playerUnit.Pokemon.Moves[currentMove];
+        move.PP--;
         yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name}" +
             $"" +
             $" used {move.Base.Name}");
@@ -86,6 +91,9 @@ public class BattleSystem : MonoBehaviour
         {
             yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.Base.Name} Fainted.");
             enemyUnit.PlayerFaintAnimation();
+
+            yield return new WaitForSeconds(1f);
+            onBattleOver(true);
         } else
         {
             StartCoroutine(EnemyMove());
@@ -97,6 +105,7 @@ public class BattleSystem : MonoBehaviour
     {
         state = BattleState.EnemyMove;
         var move = enemyUnit.Pokemon.GetRandMove();
+        move.PP--;
         yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.Base.Name}" +
             $"" +
             $" used {move.Base.Name}");
@@ -111,6 +120,9 @@ public class BattleSystem : MonoBehaviour
         {
             yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name} Fainted.");
             playerUnit.PlayerFaintAnimation();
+
+            yield return new WaitForSeconds(1f);
+            onBattleOver(false);
         }
         else
         {
@@ -155,7 +167,8 @@ public class BattleSystem : MonoBehaviour
                 //Debug.Log("Fight");
                 PlayerMove();
             } else {
-                Debug.Log("Run");
+                onBattleOver(false);
+                //Debug.Log("Run");
             }
         } 
     }
@@ -193,9 +206,16 @@ public class BattleSystem : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            dialogBox.EnableMoveSelector(false);
-            dialogBox.EnableDialogText(true);
-            StartCoroutine(PerformPlayerMove());
+            if (playerUnit.Pokemon.Moves[currentMove].PP != 0)
+            {
+                dialogBox.EnableMoveSelector(false);
+                dialogBox.EnableDialogText(true);
+                StartCoroutine(PerformPlayerMove());
+            } else
+            {
+                Debug.Log("HERE");
+            }
+            
         }
     }
 }

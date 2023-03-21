@@ -67,9 +67,11 @@ public class Pokemon
         float effect = TypeChart.GetEffectiveness(move.Base.Type, this.Base.Type1)
             * TypeChart.GetEffectiveness(move.Base.Type, this.Base.Type2);
 
+        float atk = (move.Base.IsSpecial) ? attacker.SpAttack : attacker.Attack;
+        float def = (move.Base.IsSpecial) ? attacker.SpDefense : attacker.Defense;
         float modifiers = Random.Range(0.85f, 1f) * effect * critical;
         float a = (2 * attacker.Level + 10) / 250f;
-        float d = a * move.Base.Power * ((float)attacker.Attack / Defense) + 2;
+        float d = a * move.Base.Power * ((float) atk/def) + 2;
         int damage = Mathf.FloorToInt(d * modifiers);
 
         HP -= damage;
