@@ -25,7 +25,7 @@ public class BattleSystem : MonoBehaviour
         StartCoroutine(SetupBattle());
     }
 
-    void Update()
+    public void HandleUpdate()
     {
         if (state == BattleState.PlayerAction)
         {
@@ -76,7 +76,7 @@ public class BattleSystem : MonoBehaviour
             $"" +
             $" used {move.Base.Name}");
 
-        playerUnit.PlayerAttackAnimation(move);
+        playerUnit.PlayerAttackAnimation(move, enemyUnit.transform);
         yield return new WaitForSeconds(0.5f);
         enemyUnit.PlayerHitAnimation();
         var damageDetails = enemyUnit.Pokemon.TakeDmg(move, playerUnit.Pokemon);
@@ -101,7 +101,7 @@ public class BattleSystem : MonoBehaviour
             $"" +
             $" used {move.Base.Name}");
 
-        enemyUnit.PlayerAttackAnimation(move);
+        enemyUnit.PlayerAttackAnimation(move, playerUnit.transform);
         yield return new WaitForSeconds(0.5f);
         playerUnit.PlayerHitAnimation();
         var damageDetails = playerUnit.Pokemon.TakeDmg(move, playerUnit.Pokemon);

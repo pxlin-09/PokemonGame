@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,6 +11,10 @@ public class PlayerController : MonoBehaviour
     private bool isMoving;
     private Vector2 input;
     private Animator animator;
+
+    // Observer design pattern: gameController observes when playController
+    // encounters a pokemon and changes state to battle
+    public event Action onEncountered;
 
     private void Awake()
     {
@@ -22,7 +27,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void HandleUpdate()
     {
         if (!isMoving)
         {
@@ -70,9 +75,11 @@ public class PlayerController : MonoBehaviour
     {
         if (Physics2D.OverlapCircle(transform.position, 0.2f, longGrassLayer) != null)
         {
-            if (Random.Range(1,101) <= 10)
+            Debug.Log("GRASS");
+            if (UnityEngine.Random.Range(1,51) <= 10)
             {
-                Debug.Log("Encountered a wild pokemon!");
+                animator.SetBool("isMoving", false);
+                onEncountered();
             }
         }
     }

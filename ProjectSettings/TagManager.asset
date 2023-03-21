@@ -15,7 +15,7 @@ TagManager:
   - 
   - SolidObjects
   - LongGrass
-  - 
+  - abilities
   - 
   - 
   - 
@@ -49,4 +49,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 3713710435
+    locked: 0
+  - name: abilities
+    uniqueID: 3556426887
     locked: 0

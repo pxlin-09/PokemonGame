@@ -18,3 +18,4 @@ MonoBehaviour:
   pp: 25
   power: 40
   accuracy: 100
+  vfxPrefab: {fileID: 4088022290884101870, guid: 70a5455ee6d8944e1a70747c3459eb3f, type: 3}

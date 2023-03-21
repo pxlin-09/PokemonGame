@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using static UnityEngine.GraphicsBuffer;
 
 public class BattleUnit : MonoBehaviour
 {
@@ -60,7 +61,7 @@ public class BattleUnit : MonoBehaviour
         img.transform.DOLocalMoveX(origin.x, 0.7f);
     }
 
-    public void PlayerAttackAnimation(Move move)
+    public void PlayerAttackAnimation(Move move, Transform target)
     {
         var seq = DOTween.Sequence();
         if (isPlayerUnit)
@@ -70,12 +71,24 @@ public class BattleUnit : MonoBehaviour
         {
             seq.Append(img.transform.DOLocalMoveX(origin.x - 50f, 0.25f));
         }
-        Debug.Log(move.Base.VfxPrefab == null);
+        GameObject vfx = null;
         if (move.Base.VfxPrefab != null)
         {
-            Instantiate(move.Base.VfxPrefab, img.transform.position, Quaternion.identity);
+            vfx = Instantiate(move.Base.VfxPrefab, img.transform.position, Quaternion.identity);
+            rotateVfx(vfx, target);
+            Vector3 vec = new Vector3(target.position.x, target.position.y);
+            seq.Join(vfx.transform.DOLocalMove(vec, 0.45f));
+            seq.AppendCallback(() => Destroy(vfx));
         }
         seq.Append(img.transform.DOLocalMoveX(origin.x, 0.25f));
+        
+    }
+
+    private void rotateVfx(GameObject vfx, Transform target)
+    {
+        Vector2 dir = target.position - vfx.transform.position;
+        float ang = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        vfx.transform.rotation = Quaternion.AngleAxis(ang, Vector3.forward);
     }
 
     public void PlayerHitAnimation()
