@@ -36,6 +36,11 @@ public class Pokemon
         }
         CalculateStats();
         HP = MaxHp;
+        ResetStatBoosts();
+    }
+
+    void ResetStatBoosts()
+    {
         StatBoosts = new Dictionary<Stat, int>()
         {
             {Stat.Attack, 0},
@@ -159,6 +164,11 @@ public class Pokemon
             }
             Debug.Log($"{stat} has been boosted to {StatBoosts[stat]}");
         }
+    }
+
+    public void OnBattleOver()
+    {
+        ResetStatBoosts();
     }
 }
 

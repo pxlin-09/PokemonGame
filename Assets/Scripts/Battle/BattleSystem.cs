@@ -69,7 +69,7 @@ public class BattleSystem : MonoBehaviour
         dialogBox.SetMoveNames(playerUnit.Pokemon.Moves);
         yield return StartCoroutine(dialogBox.TypeDialog($"A wild {enemyUnit.Pokemon.Base.Name} appeared."));
 
-        ActionSelection();
+        ChooseFirstTurn();
     }
 
     // Update is called once per frame
@@ -90,10 +90,22 @@ public class BattleSystem : MonoBehaviour
         dialogBox.EnableMoveSelector(true);
     }
 
+    void ChooseFirstTurn()
+    {
+        if (playerUnit.Pokemon.Speed >= enemyUnit.Pokemon.Speed)
+        {
+            ActionSelection();
+        } else
+        {
+            StartCoroutine(EnemyMove());
+        }
+    }
+
     void BattleOver(bool won)
     {
         state = BattleState.BattleOver;
         onBattleOver(won);
+        playerParty.Pokemons.ForEach(p => p.OnBattleOver());
     }
 
     IEnumerator PlayerMove()
@@ -337,8 +349,10 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator SwitchPokemon(Pokemon newPokemon)
     {
+        bool currentPokemonFainted = true;
         if (playerUnit.Pokemon.HP > 0)
         {
+            currentPokemonFainted = false;
             yield return
                 dialogBox.TypeDialog($"Come back, {playerUnit.Pokemon.Base.Name}!");
             playerUnit.PlayerFaintAnimation();
@@ -349,7 +363,14 @@ public class BattleSystem : MonoBehaviour
         dialogBox.SetMoveNames(playerUnit.Pokemon.Moves);
         yield return StartCoroutine(dialogBox.TypeDialog($"Go {playerUnit.Pokemon.Base.Name}!"));
 
-        StartCoroutine(EnemyMove());
+        if (currentPokemonFainted)
+        {
+            ChooseFirstTurn();
+        } else
+        {
+            StartCoroutine(EnemyMove());
+        }
+        
     }
 
     IEnumerator ShowStatusChanges(Pokemon pokemon)
