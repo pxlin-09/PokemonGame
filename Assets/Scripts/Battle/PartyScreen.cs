@@ -17,6 +17,7 @@ public class PartyScreen : MonoBehaviour
     [SerializeField] TextMeshProUGUI spAtt;
     [SerializeField] TextMeshProUGUI spDef;
     [SerializeField] TextMeshProUGUI speed;
+    [SerializeField] TypeSprites typeSprites;
 
     string selectedColor = "#BABABA";
 
@@ -45,7 +46,7 @@ public class PartyScreen : MonoBehaviour
         {
             if (i < pokemons.Count)
             {
-                memberSlots[i].SetData(pokemons[i]);
+                memberSlots[i].SetData(pokemons[i], typeSprites);
             } else
             {
                 memberSlots[i].gameObject.SetActive(false);
