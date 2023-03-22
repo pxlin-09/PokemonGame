@@ -100,7 +100,7 @@ public class BattleSystem : MonoBehaviour
             $"" +
             $" used {move.Base.Name}!");
 
-        playerUnit.PlayerAttackAnimation(move, enemyUnit.transform);
+        playerUnit.PlayerAttackAnimation(move, enemyUnit);
         yield return new WaitForSeconds(0.5f);
         enemyUnit.PlayerHitAnimation();
         var damageDetails = enemyUnit.Pokemon.TakeDmg(move, playerUnit.Pokemon);
@@ -129,7 +129,7 @@ public class BattleSystem : MonoBehaviour
             $"" +
             $" used {move.Base.Name}!");
 
-        enemyUnit.PlayerAttackAnimation(move, playerUnit.transform);
+        enemyUnit.PlayerAttackAnimation(move, playerUnit);
         yield return new WaitForSeconds(0.5f);
         playerUnit.PlayerHitAnimation();
         var damageDetails = playerUnit.Pokemon.TakeDmg(move, playerUnit.Pokemon);
@@ -318,7 +318,6 @@ public class BattleSystem : MonoBehaviour
             playerUnit.PlayerFaintAnimation();
             yield return new WaitForSeconds(0.7f);
         }
-
         playerUnit.Setup(newPokemon);
         playerHud.SetData(playerUnit.Pokemon);
 

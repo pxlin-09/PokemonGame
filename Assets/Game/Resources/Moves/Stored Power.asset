@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d43b83c80d272644b87bd6163511fc88, type: 3}
-  m_Name: Ember
+  m_Name: Stored Power
   m_EditorClassIdentifier: 
-  _name: Ember
+  _name: Stored Power
   description: 
-  type: 2
-  pp: 25
-  power: 40
+  type: 11
+  pp: 10
+  power: 20
   accuracy: 100
-  vfxPrefab: {fileID: 4088022290884101870, guid: 70a5455ee6d8944e1a70747c3459eb3f, type: 3}
-  vfxUp: {fileID: 0}
-  vfxDown: {fileID: 0}
-  directShot: 1
-  launchToSky: 0
+  vfxPrefab: {fileID: 0}
+  vfxUp: {fileID: 2496537883896243982, guid: 4c745eeebec28476394da63bffe3342b, type: 3}
+  vfxDown: {fileID: 7908586909412027226, guid: b62c932b527ec4d059ea8902d7a84458, type: 3}
+  directShot: 0
+  launchToSky: 1

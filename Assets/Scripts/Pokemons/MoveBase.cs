@@ -15,7 +15,18 @@ public class MoveBase : ScriptableObject
     [SerializeField] int accuracy;
     [SerializeField] GameObject vfxPrefab;
 
+    [SerializeField] GameObject vfxUp;
+    [SerializeField] GameObject vfxDown;
+
     public GameObject VfxPrefab { get { return vfxPrefab; } }
+
+    public GameObject VfxUp { get { return vfxUp; } }
+
+    public GameObject VfxDown { get { return vfxDown; } }
+
+    public bool directShot;
+
+    public bool launchToSky;
 
     public string Name { get { return _name; } }
 
@@ -26,6 +37,10 @@ public class MoveBase : ScriptableObject
     public int Accuracy { get { return accuracy; } }
 
     public PokemonType Type {  get { return type; } }
+
+    public bool DirectShot { get { return directShot; } }
+
+    public bool LaunchToSky { get { return launchToSky; } }
 
     public bool IsSpecial
     {

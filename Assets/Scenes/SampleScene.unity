@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 1515274}
   - component: {fileID: 1515276}
   - component: {fileID: 1515275}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -980,15 +980,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pokemons:
-  - _base: {fileID: 11400000, guid: 19733b2e43402014d865672205b6d3ed, type: 2}
+  - _base: {fileID: 11400000, guid: 47192ab7fb3319945b1361e21dcb0548, type: 2}
     level: 7
   - _base: {fileID: 11400000, guid: 47192ab7fb3319945b1361e21dcb0548, type: 2}
     level: 100
-  - _base: {fileID: 11400000, guid: 10f62d76549444903a283f0a8fc64cf3, type: 2}
+  - _base: {fileID: 11400000, guid: 5faedbe0380de40be8eb3042dc6dfc4d, type: 2}
     level: 7
   - _base: {fileID: 11400000, guid: f377fd8f7d17048c99ea759303c2660a, type: 2}
     level: 7
-  - _base: {fileID: 11400000, guid: d90f7cd630e0a44cfb16324787966ceb, type: 2}
+  - _base: {fileID: 11400000, guid: d4002676fc81b4a429a7b696ccc4362b, type: 2}
     level: 7
 --- !u!1 &294586254
 GameObject:
@@ -1002,7 +1002,7 @@ GameObject:
   - component: {fileID: 294586258}
   - component: {fileID: 294586257}
   - component: {fileID: 294586256}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: EnemyHud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1231,7 +1231,7 @@ GameObject:
   - component: {fileID: 380136479}
   - component: {fileID: 380136481}
   - component: {fileID: 380136480}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: BackGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10705,7 +10705,7 @@ GameObject:
   - component: {fileID: 1142053775}
   - component: {fileID: 1142053777}
   - component: {fileID: 1142053776}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: NameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12454,7 +12454,7 @@ GameObject:
   - component: {fileID: 1722317833}
   - component: {fileID: 1722317832}
   - component: {fileID: 1722317831}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: HPBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13330,7 +13330,7 @@ GameObject:
   - component: {fileID: 2037146484}
   - component: {fileID: 2037146486}
   - component: {fileID: 2037146485}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: HPText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13605,7 +13605,7 @@ GameObject:
   - component: {fileID: 2084961369}
   - component: {fileID: 2084961371}
   - component: {fileID: 2084961370}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: LevelText
   m_TagString: Untagged
   m_Icon: {fileID: 0}

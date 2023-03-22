@@ -19,3 +19,7 @@ MonoBehaviour:
   power: 40
   accuracy: 100
   vfxPrefab: {fileID: 3507807490271947315, guid: 9b18bfedf10bf4766b40d025af6dddb6, type: 3}
+  vfxUp: {fileID: 0}
+  vfxDown: {fileID: 0}
+  directShot: 1
+  launchToSky: 0

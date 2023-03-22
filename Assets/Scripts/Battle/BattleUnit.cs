@@ -60,7 +60,7 @@ public class BattleUnit : MonoBehaviour
         img.transform.DOLocalMoveX(origin.x, 0.7f);
     }
 
-    public void PlayerAttackAnimation(Move move, Transform target)
+    public void PlayerAttackAnimation(Move move, BattleUnit unit)
     {
         var seq = DOTween.Sequence();
         if (isPlayerUnit)
@@ -70,14 +70,27 @@ public class BattleUnit : MonoBehaviour
         {
             seq.Append(img.transform.DOLocalMoveX(origin.x - 50f, 0.25f));
         }
-        GameObject vfx = null;
-        if (move.Base.VfxPrefab != null)
+        
+        if (move.Base.DirectShot)
         {
-            vfx = Instantiate(move.Base.VfxPrefab, img.transform.position, Quaternion.identity);
+            Transform target = unit.transform;
+            GameObject vfx = Instantiate(move.Base.VfxPrefab, img.transform.position, Quaternion.identity);
             rotateVfx(vfx, target);
             Vector3 vec = new Vector3(target.position.x, target.position.y);
             seq.Join(vfx.transform.DOLocalMove(vec, 0.45f));
-            seq.AppendCallback(() => Destroy(vfx));
+            seq.AppendCallback(() => Destroy(vfx));   
+        } else if (move.Base.LaunchToSky)
+        {
+            //Debug.Log("Launch to sky!");
+            Vector3 downPos = new Vector3(unit.img.transform.position.x,
+                unit.img.transform.position.y+10f,
+                unit.img.transform.position.z);
+            GameObject vfxUp = Instantiate(move.Base.VfxUp, img.transform.position, Quaternion.identity);
+            GameObject vfxDown = Instantiate(move.Base.VfxDown, downPos, Quaternion.identity);
+            seq.Join(vfxUp.transform.DOLocalMoveY(img.transform.position.y+10f, 0.45f));
+            seq.AppendCallback(() => Destroy(vfxUp));
+            seq.Append(vfxDown.transform.DOLocalMoveY(unit.img.transform.position.y, 0.45f));
+            seq.AppendCallback(() => Destroy(vfxDown));
         }
         seq.Append(img.transform.DOLocalMoveX(origin.x, 0.25f));
         
