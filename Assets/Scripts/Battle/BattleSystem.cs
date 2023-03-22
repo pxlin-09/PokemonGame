@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum BattleState { Start, PlayerAction, PlayerMove, EnemyMove, Busy}
+public enum BattleState { Start, PlayerAction, PlayerMove, EnemyMove, Busy, PartyScreen}
 
 public class BattleSystem : MonoBehaviour
 {
@@ -27,6 +27,7 @@ public class BattleSystem : MonoBehaviour
     BattleState state;
     int currentAction;
     int currentMove;
+    int currentMember;
 
     // Start is called before the first frame update
     public void StartBattle(PokemonParty playerParty, Pokemon wildPokemon)
@@ -35,6 +36,7 @@ public class BattleSystem : MonoBehaviour
         this.wildPokemon = wildPokemon;
         currentAction = 0;
         currentMove = 0;
+        currentMember = 0;
         StartCoroutine(SetupBattle());
     }
 
@@ -46,6 +48,9 @@ public class BattleSystem : MonoBehaviour
         } else if (state == BattleState.PlayerMove)
         {
             HandleMoveSelection();
+        } else if (state == BattleState.PartyScreen)
+        {
+            HandlePartySelection();
         }
     }
 
@@ -93,7 +98,7 @@ public class BattleSystem : MonoBehaviour
         move.PP--;
         yield return dialogBox.TypeDialog($"{playerUnit.Pokemon.Base.Name}" +
             $"" +
-            $" used {move.Base.Name}");
+            $" used {move.Base.Name}!");
 
         playerUnit.PlayerAttackAnimation(move, enemyUnit.transform);
         yield return new WaitForSeconds(0.5f);
@@ -122,7 +127,7 @@ public class BattleSystem : MonoBehaviour
         move.PP--;
         yield return dialogBox.TypeDialog($"{enemyUnit.Pokemon.Base.Name}" +
             $"" +
-            $" used {move.Base.Name}");
+            $" used {move.Base.Name}!");
 
         enemyUnit.PlayerAttackAnimation(move, playerUnit.transform);
         yield return new WaitForSeconds(0.5f);
@@ -179,7 +184,7 @@ public class BattleSystem : MonoBehaviour
     void HandleActionSelection()
     {
         // temp fix for double display bug ***
-        dialogBox.SetDialogBox("Choose and action");
+        dialogBox.SetDialogBox("Choose an action!");
         dialogBox.EnableMoveSelector(false);
         // ***
 
@@ -265,10 +270,63 @@ public class BattleSystem : MonoBehaviour
         }    
     }
 
+    void HandlePartySelection()
+    {
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            currentMember++;
+        } else if (Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            currentMember--;
+        }
+
+        if (currentMember >= playerParty.Pokemons.Count)
+        {
+            currentMember = 0;
+        } else if (currentMember < 0)
+        {
+            currentMember = playerParty.Pokemons.Count - 1;
+        }
+
+        partyScreen.UpdateMemberSelection(currentMember);
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            var selectedPokemon = playerParty.Pokemons[currentMember];
+            if (selectedPokemon.HP <= 0 || selectedPokemon == playerUnit.Pokemon)
+            {
+                // Play "cannot sound"
+                return;
+            }
+            partyScreen.gameObject.SetActive(false);
+            StartCoroutine(SwitchPokemon(selectedPokemon));
+        } else if (Input.GetKeyDown(KeyCode.X))
+        {
+            partyScreen.gameObject.SetActive(false);
+            PlayerAction();
+        }
+    }
+
     void OpenPartyScreen()
     {
-        state = BattleState.Busy;
+        state = BattleState.PartyScreen;
         partyScreen.SetPartyData(playerParty.Pokemons);
+        dialogBox.EnableActionSelector(false);
         partyScreen.gameObject.SetActive(true);
+    }
+
+    IEnumerator SwitchPokemon(Pokemon newPokemon)
+    {
+        yield return
+            dialogBox.TypeDialog($"Come back, {playerUnit.Pokemon.Base.Name}!");
+        playerUnit.PlayerFaintAnimation();
+        yield return new WaitForSeconds(2f);
+        playerUnit.Setup(newPokemon);
+        playerHud.SetData(playerUnit.Pokemon);
+
+        dialogBox.SetMoveNames(playerUnit.Pokemon.Moves);
+        yield return StartCoroutine(dialogBox.TypeDialog($"Go {playerUnit.Pokemon.Base.Name}!"));
+
+        StartCoroutine(EnemyMove());
     }
 }

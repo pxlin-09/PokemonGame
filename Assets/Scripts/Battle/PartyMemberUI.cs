@@ -36,4 +36,12 @@ public class PartyMemberUI : MonoBehaviour
         yield return hpBar.SetHPSmooth((float)_pokemon.HP / _pokemon.MaxHp,
             (float)_pokemon.MaxHp);
     }
+
+    public Pokemon Pokemon
+    {
+        get
+        {
+            return _pokemon;
+        }
+    }
 }
