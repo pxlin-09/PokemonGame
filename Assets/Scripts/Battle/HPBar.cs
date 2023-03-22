@@ -45,7 +45,7 @@ public class HPBar : MonoBehaviour
     public void SetColor(float percent)
     {
         string col = "";
-        if (0.5 <= percent)
+        if (0.55 <= percent)
         {
             col = greenHex;
         } else if (0.3 <= percent)

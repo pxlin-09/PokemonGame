@@ -9,8 +9,13 @@ public class BattleUnit : MonoBehaviour
 {
 
     [SerializeField] bool isPlayerUnit;
+    [SerializeField] BattleHud hud;
 
     public Pokemon Pokemon { get; set; }
+
+    public bool IsPlayerUnit { get; set; }
+
+    public BattleHud Hud { get { return hud; } }
 
     Image img;
     Vector3 origin;
@@ -22,6 +27,7 @@ public class BattleUnit : MonoBehaviour
         origin = img.transform.localPosition;
         originCol = img.color;
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +50,7 @@ public class BattleUnit : MonoBehaviour
             img.sprite = Pokemon.Base.FrontSprite;
         }
         img.color = originCol;
+        hud.SetData(pokemon);
         PlayerEnterAnimation();
     }
 

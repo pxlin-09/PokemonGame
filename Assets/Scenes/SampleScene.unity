@@ -1660,6 +1660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayerUnit: 0
+  hud: {fileID: 294586256}
 --- !u!114 &472870792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11383,6 +11384,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isPlayerUnit: 1
+  hud: {fileID: 2009020139}
 --- !u!1 &1432550372
 GameObject:
   m_ObjectHideFlags: 0
@@ -11702,9 +11704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerUnit: {fileID: 1378992858}
-  playerHud: {fileID: 2009020139}
   enemyUnit: {fileID: 472870791}
-  enemyHud: {fileID: 294586256}
   dialogBox: {fileID: 1602617438}
   partyScreen: {fileID: 2020689348}
 --- !u!1 &1530001030
@@ -12596,7 +12596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wildPokemons:
-  - _base: {fileID: 11400000, guid: d90f7cd630e0a44cfb16324787966ceb, type: 2}
+  - _base: {fileID: 11400000, guid: d4002676fc81b4a429a7b696ccc4362b, type: 2}
     level: 4
 --- !u!224 &1926526101 stripped
 RectTransform:
