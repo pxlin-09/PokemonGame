@@ -144,6 +144,8 @@ public class BattleSystem : MonoBehaviour
                 {
                     targetUnit.Pokemon.ApplyBoosts(effects.Boosts);
                 }
+                yield return ShowStatusChanges(sourceUnit.Pokemon);
+                yield return ShowStatusChanges(targetUnit.Pokemon);
             }
         } else
         {
@@ -348,5 +350,14 @@ public class BattleSystem : MonoBehaviour
         yield return StartCoroutine(dialogBox.TypeDialog($"Go {playerUnit.Pokemon.Base.Name}!"));
 
         StartCoroutine(EnemyMove());
+    }
+
+    IEnumerator ShowStatusChanges(Pokemon pokemon)
+    {
+        while (pokemon.StatusChanges.Count > 0)
+        {
+            var message = pokemon.StatusChanges.Dequeue();
+            yield return dialogBox.TypeDialog(message);
+        }
     }
 }
