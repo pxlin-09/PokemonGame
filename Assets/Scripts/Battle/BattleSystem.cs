@@ -245,7 +245,7 @@ public class BattleSystem : MonoBehaviour
             currentMove++;
         }
 
-        currentMove = Mathf.Clamp(currentMove, 0, 3);
+        currentMove = Mathf.Clamp(currentMove, 0, playerUnit.Pokemon.Moves.Count-1);
 
         dialogBox.UpdateMoveSelection(currentMove,
             playerUnit.Pokemon.Moves[currentMove]);
