@@ -4,12 +4,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using static UnityEngine.GraphicsBuffer;
+using Unity.VisualScripting;
 
 public class BattleUnit : MonoBehaviour
 {
 
     [SerializeField] bool isPlayerUnit;
     [SerializeField] BattleHud hud;
+    [SerializeField] StatusEffects statusEffects;
+
 
     public Pokemon Pokemon { get; set; }
 
@@ -106,6 +109,53 @@ public class BattleUnit : MonoBehaviour
         }
         
         
+    }
+
+    public void PlayStatusChangeAnimation(bool increase)
+    {
+        var seq = DOTween.Sequence();
+        Vector3 start;
+        GameObject arrow = null;
+        float end;
+
+        if (increase)
+        {
+            
+            end = img.transform.position.y + 1f;
+            if (isPlayerUnit)
+            {
+                start = new Vector3(img.transform.position.x - 1f,
+                    img.transform.position.y - 1f,
+                    img.transform.position.z);
+                
+            } else
+            {
+                start = new Vector3(img.transform.position.x + 1f,
+                    img.transform.position.y - 1f,
+                    img.transform.position.z);
+                
+            }
+            arrow = Instantiate(statusEffects.UpArrow, start, Quaternion.identity);
+        } else
+        {
+            end = img.transform.position.y - 1f;
+            if (isPlayerUnit)
+            {
+                start = new Vector3(img.transform.position.x - 1f,
+                    img.transform.position.y + 1f,
+                    img.transform.position.z);
+            } else
+            {
+                start = new Vector3(img.transform.position.x + 1f,
+                    img.transform.position.y + 1f,
+                    img.transform.position.z);
+                
+            }
+            arrow = Instantiate(statusEffects.DownArrow, start, Quaternion.identity);
+            
+        }
+        seq.Append(arrow.transform.DOLocalMoveY(end, 0.7f));
+        seq.AppendCallback(() => Destroy(arrow));
     }
 
     private void rotateVfx(GameObject vfx, Transform target)

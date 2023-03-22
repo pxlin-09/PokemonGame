@@ -1661,6 +1661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerUnit: 0
   hud: {fileID: 294586256}
+  statusEffects: {fileID: 652899703}
 --- !u!114 &472870792
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8324,6 +8325,52 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 288011805}
   offset: {x: 0, y: 0, z: -10}
+--- !u!1 &652899702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 652899704}
+  - component: {fileID: 652899703}
+  m_Layer: 0
+  m_Name: StatusEffects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &652899703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652899702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a67a71cc1ff60495fb4b190d96559797, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upArrow: {fileID: 3955492030397205866, guid: f5ca0e429346c4bb28b33c25c74c8ded, type: 3}
+  downArrow: {fileID: 3434508128274224399, guid: fffde8ec244c1419d93eafee98800594, type: 3}
+--- !u!4 &652899704
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652899702}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -17.665167, y: 1.2402598, z: -0.052729517}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &692582434 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5161930775735445504, guid: eaa09c6cec4f04d4dbc497a1a98db12d, type: 3}
@@ -11385,6 +11432,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlayerUnit: 1
   hud: {fileID: 2009020139}
+  statusEffects: {fileID: 652899703}
 --- !u!1 &1432550372
 GameObject:
   m_ObjectHideFlags: 0

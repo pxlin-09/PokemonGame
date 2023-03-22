@@ -146,7 +146,7 @@ public class BattleSystem : MonoBehaviour
 
         if (move.Base.Category == MoveCategory.Status)
         {
-            yield return RunMoveEffects(move, sourceUnit.Pokemon, targetUnit.Pokemon);
+            yield return RunMoveEffects(move, sourceUnit, targetUnit);
         } else
         {
             var damageDetails = targetUnit.Pokemon.TakeDmg(move, sourceUnit.Pokemon);
@@ -165,18 +165,41 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    IEnumerator RunMoveEffects(Move move, Pokemon source, Pokemon target)
+    IEnumerator RunMoveEffects(Move move, BattleUnit sourceUnit, BattleUnit targetUnit)
     {
+        Pokemon source = sourceUnit.Pokemon;
+        Pokemon target = targetUnit.Pokemon;
         var effects = move.Base.Effects;
         if (effects.Boosts != null)
         {
             if (move.Base.Target == MoveTarget.Self)
             {
                 source.ApplyBoosts(effects.Boosts);
+                foreach (var boosts in effects.Boosts)
+                {
+                    if (boosts.boost > 0)
+                    {
+                        sourceUnit.PlayStatusChangeAnimation(true);
+                    } else
+                    {
+                        sourceUnit.PlayStatusChangeAnimation(false);
+                    }
+                }
             }
             else if (move.Base.Target == MoveTarget.Foe)
             {
                 target.ApplyBoosts(effects.Boosts);
+                foreach (var boosts in effects.Boosts)
+                {
+                    if (boosts.boost > 0)
+                    {
+                        targetUnit.PlayStatusChangeAnimation(true);
+                    }
+                    else
+                    {
+                        targetUnit.PlayStatusChangeAnimation(false);
+                    }
+                }
             }
             yield return ShowStatusChanges(source);
             yield return ShowStatusChanges(target);
