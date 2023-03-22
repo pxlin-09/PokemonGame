@@ -17,6 +17,8 @@ public class Pokemon
 
     public Dictionary<Stat, int> Stats { get; private set; }
 
+    public Dictionary<Stat, int> StatBoosts { get; private set; }
+
     public void Init()
     {
         HP = MaxHp;
@@ -32,6 +34,14 @@ public class Pokemon
         }
         CalculateStats();
         HP = MaxHp;
+        StatBoosts = new Dictionary<Stat, int>()
+        {
+            {Stat.Attack, 0},
+            {Stat.Defense, 0},
+            {Stat.SpAttack, 0},
+            {Stat.SpDefense, 0},
+            {Stat.Speed, 0}
+        };
     }
 
     void CalculateStats()
@@ -53,7 +63,16 @@ public class Pokemon
         int statVal = Stats[stat];
 
         // TODO: Apply stat boost
+        int boost = StatBoosts[stat];
+        var boostValues = new float[] { 1f, 1.5f, 2f, 2.5f, 3f, 3.5f, 4f };
 
+        if (boost >= 0)
+        {
+            statVal = Mathf.FloorToInt(statVal * boostValues[boost]);
+        } else
+        {
+            statVal = Mathf.FloorToInt(statVal / boostValues[-boost]);
+        }
         return statVal;
     }
 
@@ -94,8 +113,8 @@ public class Pokemon
         float effect = TypeChart.GetEffectiveness(move.Base.Type, this.Base.Type1)
             * TypeChart.GetEffectiveness(move.Base.Type, this.Base.Type2);
 
-        float atk = (move.Base.IsSpecial) ? attacker.SpAttack : attacker.Attack;
-        float def = (move.Base.IsSpecial) ? attacker.SpDefense : attacker.Defense;
+        float atk = (move.Base.Category == MoveCategory.Special) ? attacker.SpAttack : attacker.Attack;
+        float def = (move.Base.Category == MoveCategory.Special) ? attacker.SpDefense : attacker.Defense;
         float modifiers = Random.Range(0.85f, 1f) * effect * critical;
         float a = (2 * attacker.Level + 10) / 250f;
         float d = a * move.Base.Power * ((float) atk/def) + 2;
@@ -118,6 +137,19 @@ public class Pokemon
     {
         int random = Random.Range(0, Moves.Count);
         return Moves[random];
+    }
+
+    public void ApplyBoosts(List<StatBoost> statBoosts)
+    {
+        foreach (var statBoost in statBoosts)
+        {
+            var stat = statBoost.stat;
+            var boost = statBoost.boost;
+
+            StatBoosts[stat] = Mathf.Clamp(StatBoosts[stat] + boost, -6, 6);
+
+            Debug.Log($"{stat} has been boosted to {StatBoosts[stat]}");
+        }
     }
 }
 

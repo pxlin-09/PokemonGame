@@ -18,3 +18,12 @@ MonoBehaviour:
   pp: 25
   power: 45
   accuracy: 100
+  category: 1
+  effects:
+    boosts: []
+  target: 0
+  vfxPrefab: {fileID: 0}
+  vfxUp: {fileID: 0}
+  vfxDown: {fileID: 0}
+  directShot: 0
+  launchToSky: 0

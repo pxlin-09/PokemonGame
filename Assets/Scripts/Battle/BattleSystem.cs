@@ -131,10 +131,28 @@ public class BattleSystem : MonoBehaviour
         sourceUnit.PlayerAttackAnimation(move, targetUnit);
         yield return new WaitForSeconds(0.5f);
         targetUnit.PlayerHitAnimation();
-        var damageDetails = targetUnit.Pokemon.TakeDmg(move, sourceUnit.Pokemon);
-        yield return targetUnit.Hud.UpdateHP();
-        yield return ShowDamageDetails(damageDetails);
-        if (damageDetails.Fainted)
+
+        if (move.Base.Category == MoveCategory.Status)
+        {
+            var effects = move.Base.Effects;
+            if (effects.Boosts != null)
+            {
+                if (move.Base.Target == MoveTarget.Self)
+                {
+                    sourceUnit.Pokemon.ApplyBoosts(effects.Boosts);
+                } else if (move.Base.Target == MoveTarget.Foe)
+                {
+                    targetUnit.Pokemon.ApplyBoosts(effects.Boosts);
+                }
+            }
+        } else
+        {
+            var damageDetails = targetUnit.Pokemon.TakeDmg(move, sourceUnit.Pokemon);
+            yield return targetUnit.Hud.UpdateHP();
+            yield return ShowDamageDetails(damageDetails);
+        }
+        
+        if (targetUnit.Pokemon.HP <= 0)
         {
             yield return dialogBox.TypeDialog($"{targetUnit.Pokemon.Base.Name} Fainted.");
             targetUnit.PlayerFaintAnimation();
@@ -245,7 +263,7 @@ public class BattleSystem : MonoBehaviour
             currentMove++;
         }
 
-        currentMove = Mathf.Clamp(currentMove, 0, playerUnit.Pokemon.Moves.Count-1);
+        currentMove = Mathf.Clamp(currentMove, 0, playerUnit.Pokemon.Moves.Count - 1);
 
         dialogBox.UpdateMoveSelection(currentMove,
             playerUnit.Pokemon.Moves[currentMove]);

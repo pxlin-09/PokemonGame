@@ -13,20 +13,24 @@ public class MoveBase : ScriptableObject
     [SerializeField] int pp;
     [SerializeField] int power;
     [SerializeField] int accuracy;
-    [SerializeField] GameObject vfxPrefab;
+    [SerializeField] MoveCategory category;
 
+    [SerializeField] MoveEffects effects;
+    [SerializeField] MoveTarget target;
+
+    [SerializeField] GameObject vfxPrefab;
     [SerializeField] GameObject vfxUp;
     [SerializeField] GameObject vfxDown;
+
+    public bool directShot;
+
+    public bool launchToSky;
 
     public GameObject VfxPrefab { get { return vfxPrefab; } }
 
     public GameObject VfxUp { get { return vfxUp; } }
 
     public GameObject VfxDown { get { return vfxDown; } }
-
-    public bool directShot;
-
-    public bool launchToSky;
 
     public string Name { get { return _name; } }
 
@@ -38,26 +42,39 @@ public class MoveBase : ScriptableObject
 
     public PokemonType Type {  get { return type; } }
 
+    public MoveCategory Category { get { return category; } }
+
+    public MoveEffects Effects { get { return effects; } }
+
+    public MoveTarget Target {  get { return target; } }
+
     public bool DirectShot { get { return directShot; } }
 
     public bool LaunchToSky { get { return launchToSky; } }
 
-    public bool IsSpecial
-    {
-        get
-        {
-            if (type == PokemonType.Fire ||
-                type == PokemonType.Water ||
-                type == PokemonType.Grass ||
-                type == PokemonType.Ice ||
-                type == PokemonType.Electric ||
-                type == PokemonType.Dragon)
-            {
-                return true;
-            } else
-            {
-                return false;
-            }
-        }
-    }
+}
+
+[System.Serializable]
+public class MoveEffects
+{
+    [SerializeField] List<StatBoost> boosts;
+
+    public List<StatBoost> Boosts { get { return boosts; } }
+};
+
+[System.Serializable]
+public class StatBoost
+{
+    public Stat stat;
+    public int boost;
+};
+
+public enum MoveCategory
+{
+    Physical, Special, Status
+}
+
+public enum MoveTarget
+{
+    Foe, Self
 }

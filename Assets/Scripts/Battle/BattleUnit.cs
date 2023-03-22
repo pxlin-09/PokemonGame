@@ -85,7 +85,8 @@ public class BattleUnit : MonoBehaviour
             rotateVfx(vfx, target);
             Vector3 vec = new Vector3(target.position.x, target.position.y);
             seq.Join(vfx.transform.DOLocalMove(vec, 0.45f));
-            seq.AppendCallback(() => Destroy(vfx));   
+            seq.AppendCallback(() => Destroy(vfx));
+            seq.Append(img.transform.DOLocalMoveX(origin.x, 0.25f));
         } else if (move.Base.LaunchToSky)
         {
             //Debug.Log("Launch to sky!");
@@ -96,10 +97,14 @@ public class BattleUnit : MonoBehaviour
             GameObject vfxDown = Instantiate(move.Base.VfxDown, downPos, Quaternion.identity);
             seq.Join(vfxUp.transform.DOLocalMoveY(img.transform.position.y+10f, 0.45f));
             seq.AppendCallback(() => Destroy(vfxUp));
+            seq.Append(img.transform.DOLocalMoveX(origin.x, 0.25f));
             seq.Append(vfxDown.transform.DOLocalMoveY(unit.img.transform.position.y, 0.45f));
             seq.AppendCallback(() => Destroy(vfxDown));
+        } else
+        {
+            seq.Append(img.transform.DOLocalMoveX(origin.x, 0.25f));
         }
-        seq.Append(img.transform.DOLocalMoveX(origin.x, 0.25f));
+        
         
     }
 
