@@ -146,19 +146,7 @@ public class BattleSystem : MonoBehaviour
 
         if (move.Base.Category == MoveCategory.Status)
         {
-            var effects = move.Base.Effects;
-            if (effects.Boosts != null)
-            {
-                if (move.Base.Target == MoveTarget.Self)
-                {
-                    sourceUnit.Pokemon.ApplyBoosts(effects.Boosts);
-                } else if (move.Base.Target == MoveTarget.Foe)
-                {
-                    targetUnit.Pokemon.ApplyBoosts(effects.Boosts);
-                }
-                yield return ShowStatusChanges(sourceUnit.Pokemon);
-                yield return ShowStatusChanges(targetUnit.Pokemon);
-            }
+            yield return RunMoveEffects(move, sourceUnit.Pokemon, targetUnit.Pokemon);
         } else
         {
             var damageDetails = targetUnit.Pokemon.TakeDmg(move, sourceUnit.Pokemon);
@@ -174,6 +162,24 @@ public class BattleSystem : MonoBehaviour
             yield return new WaitForSeconds(1f);
 
             CheckBattleOver(targetUnit);
+        }
+    }
+
+    IEnumerator RunMoveEffects(Move move, Pokemon source, Pokemon target)
+    {
+        var effects = move.Base.Effects;
+        if (effects.Boosts != null)
+        {
+            if (move.Base.Target == MoveTarget.Self)
+            {
+                source.ApplyBoosts(effects.Boosts);
+            }
+            else if (move.Base.Target == MoveTarget.Foe)
+            {
+                target.ApplyBoosts(effects.Boosts);
+            }
+            yield return ShowStatusChanges(source);
+            yield return ShowStatusChanges(target);
         }
     }
 
