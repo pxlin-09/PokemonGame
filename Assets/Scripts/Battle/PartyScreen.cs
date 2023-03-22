@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +10,13 @@ public class PartyScreen : MonoBehaviour
     List<Pokemon> pokemons;
 
     [SerializeField] Image pokemonDisplay;
+
+    [SerializeField] TextMeshProUGUI hp;
+    [SerializeField] TextMeshProUGUI att;
+    [SerializeField] TextMeshProUGUI def;
+    [SerializeField] TextMeshProUGUI spAtt;
+    [SerializeField] TextMeshProUGUI spDef;
+    [SerializeField] TextMeshProUGUI speed;
 
     string selectedColor = "#BABABA";
 
@@ -56,11 +64,22 @@ public class PartyScreen : MonoBehaviour
                 {
                     memberSlots[i].GetComponent<Image>().color = newCol;
                 }
-                pokemonDisplay.sprite = memberSlots[i].Pokemon.Base.FrontSprite;
+                SetStats(memberSlots[i].Pokemon);
             } else
             {
                 memberSlots[i].GetComponent<Image>().color = Color.white;
             }
         }
+    }
+
+    private void SetStats(Pokemon pokemon)
+    {
+        pokemonDisplay.sprite = pokemon.Base.FrontSprite;
+        hp.text = $"HP: {pokemon.HP}";
+        att.text = $"Att: {pokemon.Attack}";
+        def.text = $"Def: {pokemon.Defense}";
+        spAtt.text = $"SpAtt: {pokemon.SpAttack}";
+        spDef.text = $"SpDef: {pokemon.SpDefense}";
+        speed.text = $"Speed: {pokemon.Speed}";
     }
 }

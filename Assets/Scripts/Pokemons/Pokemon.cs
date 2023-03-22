@@ -31,7 +31,9 @@ public class Pokemon
 
     public int MaxHp
     {
-        get { return Mathf.FloorToInt((Base.MaxHp * Level) / 100f) + 10; }
+        // original:
+        // get { return Mathf.FloorToInt((Base.MaxHp * Level) / 70f) + 10; }
+        get { return Mathf.FloorToInt((Base.MaxHp * Level) / 70f) + 10; }
     }
     public int Attack
     {
