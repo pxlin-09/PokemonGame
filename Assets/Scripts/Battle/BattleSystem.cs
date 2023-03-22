@@ -311,10 +311,14 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator SwitchPokemon(Pokemon newPokemon)
     {
-        yield return
-            dialogBox.TypeDialog($"Come back, {playerUnit.Pokemon.Base.Name}!");
-        playerUnit.PlayerFaintAnimation();
-        yield return new WaitForSeconds(0.7f);
+        if (playerUnit.Pokemon.HP > 0)
+        {
+            yield return
+                dialogBox.TypeDialog($"Come back, {playerUnit.Pokemon.Base.Name}!");
+            playerUnit.PlayerFaintAnimation();
+            yield return new WaitForSeconds(0.7f);
+        }
+
         playerUnit.Setup(newPokemon);
         playerHud.SetData(playerUnit.Pokemon);
 
