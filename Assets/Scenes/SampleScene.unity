@@ -12601,10 +12601,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wildPokemons:
-  - _base: {fileID: 11400000, guid: 10f62d76549444903a283f0a8fc64cf3, type: 2}
-    level: 4
-  - _base: {fileID: 11400000, guid: 2ef17e665c9504040a0ba3d9c85041e2, type: 2}
-    level: 4
   - _base: {fileID: 11400000, guid: d90f7cd630e0a44cfb16324787966ceb, type: 2}
     level: 4
 --- !u!224 &1926526101 stripped

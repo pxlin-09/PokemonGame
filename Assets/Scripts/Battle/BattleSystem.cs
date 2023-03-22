@@ -145,13 +145,7 @@ public class BattleSystem : MonoBehaviour
             var nextPokemon = playerParty.getHealthyPokemon();
             if (nextPokemon != null)
             {
-                playerUnit.Setup(nextPokemon);
-                playerHud.SetData(playerUnit.Pokemon);
-
-                dialogBox.SetMoveNames(playerUnit.Pokemon.Moves);
-                yield return StartCoroutine(dialogBox.TypeDialog($"Go {playerUnit.Pokemon.Base.Name}!"));
-
-                PlayerAction();
+                OpenPartyScreen();
             } else
             {
                 onBattleOver(false);
@@ -320,7 +314,7 @@ public class BattleSystem : MonoBehaviour
         yield return
             dialogBox.TypeDialog($"Come back, {playerUnit.Pokemon.Base.Name}!");
         playerUnit.PlayerFaintAnimation();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.7f);
         playerUnit.Setup(newPokemon);
         playerHud.SetData(playerUnit.Pokemon);
 
