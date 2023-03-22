@@ -77,7 +77,7 @@ public class Pokemon
         float a = (2 * attacker.Level + 10) / 250f;
         float d = a * move.Base.Power * ((float) atk/def) + 2;
         int damage = Mathf.FloorToInt(d * modifiers);
-
+        Debug.Log($"Dealt dmg: {damage}");
         HP -= damage;
         if (HP <= 0) { HP = 0; }
 

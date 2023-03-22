@@ -12598,6 +12598,8 @@ MonoBehaviour:
   wildPokemons:
   - _base: {fileID: 11400000, guid: d4002676fc81b4a429a7b696ccc4362b, type: 2}
     level: 4
+  - _base: {fileID: 11400000, guid: 5faedbe0380de40be8eb3042dc6dfc4d, type: 2}
+    level: 4
 --- !u!224 &1926526101 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5161930775735445504, guid: eaa09c6cec4f04d4dbc497a1a98db12d, type: 3}

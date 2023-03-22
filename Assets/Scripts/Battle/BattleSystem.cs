@@ -131,7 +131,7 @@ public class BattleSystem : MonoBehaviour
         sourceUnit.PlayerAttackAnimation(move, targetUnit);
         yield return new WaitForSeconds(0.5f);
         targetUnit.PlayerHitAnimation();
-        var damageDetails = targetUnit.Pokemon.TakeDmg(move, targetUnit.Pokemon);
+        var damageDetails = targetUnit.Pokemon.TakeDmg(move, sourceUnit.Pokemon);
         yield return targetUnit.Hud.UpdateHP();
         yield return ShowDamageDetails(damageDetails);
         if (damageDetails.Fainted)
