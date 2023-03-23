@@ -12644,10 +12644,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wildPokemons:
-  - _base: {fileID: 11400000, guid: d4002676fc81b4a429a7b696ccc4362b, type: 2}
-    level: 4
-  - _base: {fileID: 11400000, guid: 5faedbe0380de40be8eb3042dc6dfc4d, type: 2}
-    level: 4
   - _base: {fileID: 11400000, guid: 4ef276af7146a46d1bf3b157c8213ebd, type: 2}
     level: 4
   - _base: {fileID: 11400000, guid: 53e3fc324974d437db646d505cb6f44e, type: 2}

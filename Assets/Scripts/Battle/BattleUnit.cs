@@ -22,12 +22,14 @@ public class BattleUnit : MonoBehaviour
 
     Image img;
     Vector3 origin;
+    Vector3 absOrigin;
     Color originCol;
 
     private void Awake()
     {
         img = GetComponent<Image>();
         origin = img.transform.localPosition;
+        absOrigin = img.transform.position;
         originCol = img.color;
     }
 
@@ -121,34 +123,34 @@ public class BattleUnit : MonoBehaviour
         if (increase)
         {
             
-            end = img.transform.position.y + 1f;
+            end = absOrigin.y + 1f;
             if (isPlayerUnit)
             {
-                start = new Vector3(img.transform.position.x - 1f,
-                    img.transform.position.y - 1f,
-                    img.transform.position.z);
+                start = new Vector3(absOrigin.x - 1f,
+                    absOrigin.y - 0.5f,
+                    absOrigin.z);
                 
             } else
             {
-                start = new Vector3(img.transform.position.x + 1f,
-                    img.transform.position.y - 1f,
-                    img.transform.position.z);
+                start = new Vector3(absOrigin.x + 1f,
+                    absOrigin.y - 0.5f,
+                    absOrigin.z);
                 
             }
             arrow = Instantiate(statusEffects.UpArrow, start, Quaternion.identity);
         } else
         {
-            end = img.transform.position.y - 1f;
+            end = absOrigin.y - 0.5f;
             if (isPlayerUnit)
             {
-                start = new Vector3(img.transform.position.x - 1f,
-                    img.transform.position.y + 1f,
-                    img.transform.position.z);
+                start = new Vector3(absOrigin.x - 1f,
+                    absOrigin.y + 1f,
+                    absOrigin.z);
             } else
             {
-                start = new Vector3(img.transform.position.x + 1f,
-                    img.transform.position.y + 1f,
-                    img.transform.position.z);
+                start = new Vector3(absOrigin.x + 1f,
+                    absOrigin.y + 1f,
+                    absOrigin.z);
                 
             }
             arrow = Instantiate(statusEffects.DownArrow, start, Quaternion.identity);
