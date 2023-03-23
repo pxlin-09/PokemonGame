@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e124e85c8f8d3fe4090013798c6f7590, type: 3}
+  m_Name: Nirodan(W)
+  m_EditorClassIdentifier: 
+  _name: Nirodan(W)
+  description: 
+  frontSprite: {fileID: 21300000, guid: e1c31c17977cb4432b7ca9ca1d15b2b6, type: 3}
+  backSprite: {fileID: 21300000, guid: f979c79504f5545cb940ed99772b3e32, type: 3}
+  type1: 8
+  type2: 0
+  maxHp: 55
+  attack: 47
+  defense: 52
+  spAttack: 40
+  spDefense: 40
+  speed: 41
+  learnableMoves:
+  - moveBase: {fileID: 11400000, guid: 7088abbf4821fb747b0a330ebdba15d2, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 0a5c93750d078491baaa738b8bc48574, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: d7f65e4b4b319674a8922c287804297b, type: 2}
+    level: 5
+  - moveBase: {fileID: 11400000, guid: c4d94ac783c1f4e34b5b33a057906f09, type: 2}
+    level: 10
