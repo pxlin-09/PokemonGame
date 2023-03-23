@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 66357466830073731}
   - component: {fileID: 3080639683538670386}
   m_Layer: 10
-  m_Name: PowderedMist
+  m_Name: PoisonPowder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

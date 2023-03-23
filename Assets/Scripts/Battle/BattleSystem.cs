@@ -378,6 +378,7 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator SwitchPokemon(Pokemon newPokemon)
     {
+        state = BattleState.Busy;
         bool currentPokemonFainted = true;
         if (playerUnit.Pokemon.HP > 0)
         {
