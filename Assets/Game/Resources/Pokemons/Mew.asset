@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e124e85c8f8d3fe4090013798c6f7590, type: 3}
+  m_Name: Mew
+  m_EditorClassIdentifier: 
+  _name: Mew
+  description: 
+  frontSprite: {fileID: 21300000, guid: 3af1f14e77e9c4d0d92957a106d42fec, type: 3}
+  backSprite: {fileID: 21300000, guid: 162b3be5b131e43c6a7a51df55280247, type: 3}
+  type1: 11
+  type2: 0
+  maxHp: 100
+  attack: 100
+  defense: 100
+  spAttack: 100
+  spDefense: 100
+  speed: 100
+  learnableMoves:
+  - moveBase: {fileID: 11400000, guid: f2a6f6425d01b416c8f8166bd3203a96, type: 2}
+    level: 1
