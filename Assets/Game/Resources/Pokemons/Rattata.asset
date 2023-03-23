@@ -10,24 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e124e85c8f8d3fe4090013798c6f7590, type: 3}
-  m_Name: Caterpie
+  m_Name: Rattata
   m_EditorClassIdentifier: 
-  _name: Caterpie
+  _name: Rattata
   description: 
-  frontSprite: {fileID: 21300000, guid: a25dd8ba930fa482ab47434267ebab34, type: 3}
-  backSprite: {fileID: 21300000, guid: c7dcdbc877e5d4b1e81df1e5c4bd5844, type: 3}
-  type1: 12
+  frontSprite: {fileID: 21300000, guid: 9615b5e0e7e2549eb98d542d9390f053, type: 3}
+  backSprite: {fileID: 21300000, guid: 27e191213092c4ccaaa265fdd87a6b15, type: 3}
+  type1: 1
   type2: 0
-  maxHp: 45
-  attack: 30
+  maxHp: 30
+  attack: 56
   defense: 35
-  spAttack: 20
-  spDefense: 20
-  speed: 45
+  spAttack: 25
+  spDefense: 35
+  speed: 72
   learnableMoves:
+  - moveBase: {fileID: 11400000, guid: c4d94ac783c1f4e34b5b33a057906f09, type: 2}
+    level: 1
   - moveBase: {fileID: 11400000, guid: 4e75a68df55c87746bc98138f7ceb2f7, type: 2}
     level: 1
-  - moveBase: {fileID: 11400000, guid: cf5c7e7c2d313455d9ecef8cf078a03d, type: 2}
-    level: 9
-  - moveBase: {fileID: 11400000, guid: 5dbe6ab3848ea485388603b88ffa3893, type: 2}
-    level: 12

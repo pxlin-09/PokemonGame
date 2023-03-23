@@ -982,7 +982,7 @@ MonoBehaviour:
   pokemons:
   - _base: {fileID: 11400000, guid: 47192ab7fb3319945b1361e21dcb0548, type: 2}
     level: 7
-  - _base: {fileID: 11400000, guid: 47192ab7fb3319945b1361e21dcb0548, type: 2}
+  - _base: {fileID: 11400000, guid: 10f62d76549444903a283f0a8fc64cf3, type: 2}
     level: 100
   - _base: {fileID: 11400000, guid: 5faedbe0380de40be8eb3042dc6dfc4d, type: 2}
     level: 7
@@ -11721,7 +11721,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1451710403
 Transform:
   m_ObjectHideFlags: 0
@@ -12647,6 +12647,12 @@ MonoBehaviour:
   - _base: {fileID: 11400000, guid: d4002676fc81b4a429a7b696ccc4362b, type: 2}
     level: 4
   - _base: {fileID: 11400000, guid: 5faedbe0380de40be8eb3042dc6dfc4d, type: 2}
+    level: 4
+  - _base: {fileID: 11400000, guid: 4ef276af7146a46d1bf3b157c8213ebd, type: 2}
+    level: 4
+  - _base: {fileID: 11400000, guid: 53e3fc324974d437db646d505cb6f44e, type: 2}
+    level: 4
+  - _base: {fileID: 11400000, guid: 60c7a9a0c2abd41659011944b59facf7, type: 2}
     level: 4
 --- !u!224 &1926526101 stripped
 RectTransform:

@@ -10,20 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d43b83c80d272644b87bd6163511fc88, type: 3}
-  m_Name: Poison Powder
+  m_Name: Tail Whip
   m_EditorClassIdentifier: 
-  _name: Poison Powder
+  _name: Tail Whip
   description: 
-  type: 8
-  pp: 35
+  type: 1
+  pp: 30
   power: 0
-  accuracy: 75
-  category: 1
+  accuracy: 100
+  category: 2
   effects:
-    boosts: []
+    boosts:
+    - stat: 1
+      boost: -1
   target: 0
-  vfxPrefab: {fileID: 8785596216506717366, guid: 3c5acfccfa74e4b0f8f88b628fd8cdcf, type: 3}
+  vfxPrefab: {fileID: 0}
   vfxUp: {fileID: 0}
   vfxDown: {fileID: 0}
-  directShot: 1
+  directShot: 0
   launchToSky: 0
