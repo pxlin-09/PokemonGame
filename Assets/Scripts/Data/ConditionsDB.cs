@@ -35,6 +35,24 @@ public class ConditionsDB
                     pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is hurt due to burn!");
                 }
             }
+        },
+
+        {
+            ConditionID.par,
+            new Condition()
+            {
+                Name = "Paralyze",
+                StartMessage = "has been paralyzed!",
+                OnBeforeMove = (Pokemon pokemon) =>
+                {
+                    if (true)//if (Random.Range(0,5) == 1)
+                    {
+                        pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is paralyzed and cannot move!");
+                        return false;
+                    }
+                    return true;
+                }
+            }
         }
     };
 

@@ -980,10 +980,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pokemons:
-  - _base: {fileID: 11400000, guid: 10f62d76549444903a283f0a8fc64cf3, type: 2}
-    level: 20
   - _base: {fileID: 11400000, guid: 2728cf39b330e4b82b970b5f4f5c30a7, type: 2}
     level: 100
+  - _base: {fileID: 11400000, guid: 10f62d76549444903a283f0a8fc64cf3, type: 2}
+    level: 20
   - _base: {fileID: 11400000, guid: 5faedbe0380de40be8eb3042dc6dfc4d, type: 2}
     level: 7
   - _base: {fileID: 11400000, guid: e8528e0b2804f4ed39217c25f1e4bd05, type: 2}

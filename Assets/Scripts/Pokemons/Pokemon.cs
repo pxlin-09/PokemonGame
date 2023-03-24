@@ -191,6 +191,21 @@ public class Pokemon
         Status?.OnAfterTurn?.Invoke(this); // Null condition operator
         return Status;
     }
+
+    public ConditionDetails OnBeforeTurn()
+    {
+        if (Status?.OnBeforeMove != null)
+        {
+            ConditionDetails cond =
+                new ConditionDetails
+                {
+                    status = Status,
+                    move = Status.OnBeforeMove(this)
+                };
+            return cond;
+        }
+        return null;
+    }
 }
 
 public class DamageDetails
@@ -200,4 +215,10 @@ public class DamageDetails
     public float Critical { get; set; }
 
     public float Effect { get; set; }
+}
+
+public class ConditionDetails
+{
+    public Condition status;
+    public bool move;
 }

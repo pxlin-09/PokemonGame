@@ -179,9 +179,26 @@ public class BattleUnit : MonoBehaviour
         } else if (status.Name == "Burn")
         {
             seq.Append(img.DOColor(Color.red, 0.1f));
+        } else  if (status.Name == "Paralyze")
+        {
+            seq.Append(img.DOColor(Color.yellow, 0.1f));
+            Shake(seq);
+        } else if (status.Name == "Sleep")
+        {
+            seq.Append(img.DOColor(Color.blue, 0.1f));
+            Shake(seq);
         }
         
         seq.Append(img.DOColor(originCol, 0.1f));
+    }
+
+    private void Shake(DG.Tweening.Sequence seq)
+    {
+        seq.Append(img.transform.DOLocalMoveX(origin.x + 5f, 0.06f));
+        seq.Append(img.transform.DOLocalMoveX(origin.x - 5f, 0.06f));
+        seq.Append(img.transform.DOLocalMoveX(origin.x + 5f, 0.06f));
+        seq.Append(img.transform.DOLocalMoveX(origin.x - 5f, 0.06f));
+        seq.Append(img.transform.DOLocalMoveX(origin.x, 0.03f));
     }
 
     public void PlayerFaintAnimation()

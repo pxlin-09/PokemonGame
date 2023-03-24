@@ -12,6 +12,8 @@ public class Condition
     public string StartMessage { get; set; }
 
     public Action<Pokemon> OnAfterTurn { get; set; }
+
+    public Func<Pokemon, bool> OnBeforeMove { get; set; }
     // Start is called before the first frame update
     void Start()
     {
