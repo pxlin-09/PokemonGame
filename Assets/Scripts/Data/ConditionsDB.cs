@@ -45,7 +45,7 @@ public class ConditionsDB
                 StartMessage = "has been paralyzed!",
                 OnBeforeMove = (Pokemon pokemon) =>
                 {
-                    if (Random.Range(0,3) == 1)//if (Random.Range(0,5) == 1)
+                    if (Random.Range(0,5) == 1)
                     {
                         pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is paralyzed and cannot move!");
                         return false;
