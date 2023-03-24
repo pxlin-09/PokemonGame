@@ -66,9 +66,7 @@ public class Pokemon
         Stats.Add(Stat.SpDefense, Mathf.FloorToInt((Base.SpDefense * Level) / 100f + 5));
         Stats.Add(Stat.Speed, Mathf.FloorToInt((Base.Speed * Level) / 100f + 5));
 
-        // original:
-        // Mathf.FloorToInt((Base.MaxHp * Level) / 70f) + 10;
-        MaxHp = Mathf.FloorToInt((Base.MaxHp * Level) / 70f) + 10;
+        MaxHp = Mathf.FloorToInt((Base.MaxHp * Level) / 100f) + 10 + Level;
     }
 
     int GetStat(Stat stat)
@@ -173,9 +171,9 @@ public class Pokemon
 
     public void SetStatus (ConditionID conditionId)
     {
-        if (Status != null && Status.Name == ConditionsDB.Conditions[conditionId].Name)
+        if (Status != null)
         {
-            StatusChanges.Enqueue($"The move has no affected!");
+            StatusChanges.Enqueue($"The move has no effect!");
         }
         Status = ConditionsDB.Conditions[conditionId];
         Status?.OnStart?.Invoke(this);
