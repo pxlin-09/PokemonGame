@@ -201,9 +201,12 @@ public class BattleSystem : MonoBehaviour
                     }
                 }
             }
-            yield return ShowStatusChanges(source);
-            yield return ShowStatusChanges(target);
+            
         }
+
+        yield return ShowStatusChanges(source);
+        yield return ShowStatusChanges(target);
+
     }
 
     void CheckBattleOver(BattleUnit faintedUnit)
