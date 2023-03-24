@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ConditionsDB
 {
+
     public static Dictionary<ConditionID, Condition> Conditions { get; set; } = new Dictionary<ConditionID, Condition>()
     {
         {
@@ -11,8 +12,28 @@ public class ConditionsDB
             new Condition()
             {
                 Name = "Poison",
-                StartMessage = "has been poisoned",
+                StartMessage = "has been poisoned!",
+                OnAfterTurn = (Pokemon pokemon) =>
+                {
+                    int damage = Mathf.Max(1, pokemon.MaxHp/8);
+                    pokemon.UpdateHP(damage);
+                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is hurt due to poison!");
+                }
+            }
+        },
 
+        {
+            ConditionID.brn,
+            new Condition()
+            {
+                Name = "Burn",
+                StartMessage = "has been burned!",
+                OnAfterTurn = (Pokemon pokemon) =>
+                {
+                    int damage = Mathf.Max(1, pokemon.MaxHp/16);
+                    pokemon.UpdateHP(damage);
+                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is hurt due to burn!");
+                }
             }
         }
     };

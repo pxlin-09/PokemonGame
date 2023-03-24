@@ -21,6 +21,10 @@ public class Pokemon
 
     public Queue<string> StatusChanges { get; private set; } = new Queue<string>();
 
+    public Condition Status { get; private set; }
+
+    public bool HpChange { get; set; }
+
     public void Init()
     {
         HP = MaxHp;
@@ -127,8 +131,7 @@ public class Pokemon
         float d = a * move.Base.Power * ((float) atk/def) + 2;
         int damage = Mathf.FloorToInt(d * modifiers);
         Debug.Log($"Dealt dmg: {damage}");
-        HP -= damage;
-        if (HP <= 0) { HP = 0; }
+        UpdateHP(damage);
 
         var damageDetails = new DamageDetails()
         {
@@ -166,9 +169,27 @@ public class Pokemon
         }
     }
 
+    public void SetStatus (ConditionID conditionId)
+    {
+        Status = ConditionsDB.Conditions[conditionId];
+        StatusChanges.Enqueue($"{Base.Name} {Status.StartMessage}");
+    }
+
+    public void UpdateHP(int damage)
+    {
+        HpChange = true;
+        HP = Mathf.Clamp(HP - damage, 0, MaxHp);
+    }
+
     public void OnBattleOver()
     {
         ResetStatBoosts();
+    }
+
+    public Condition OnAfterTurn()
+    {
+        Status?.OnAfterTurn?.Invoke(this); // Null condition operator
+        return Status;
     }
 }
 

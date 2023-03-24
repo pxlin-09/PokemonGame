@@ -153,7 +153,7 @@ public class BattleSystem : MonoBehaviour
             yield return targetUnit.Hud.UpdateHP();
             yield return ShowDamageDetails(damageDetails);
         }
-        
+
         if (targetUnit.Pokemon.HP <= 0)
         {
             yield return dialogBox.TypeDialog($"{targetUnit.Pokemon.Base.Name} Fainted.");
@@ -162,6 +162,26 @@ public class BattleSystem : MonoBehaviour
             yield return new WaitForSeconds(1f);
 
             CheckBattleOver(targetUnit);
+
+        }
+
+        // status can decrease pokemon hp
+        Condition status = sourceUnit.Pokemon.OnAfterTurn();
+        yield return ShowStatusChanges(sourceUnit.Pokemon);
+        if (sourceUnit.Pokemon.HpChange)
+        {
+            sourceUnit.PlayerHitAnimation(status);
+        }
+        yield return sourceUnit.Hud.UpdateHP();
+
+        if (sourceUnit.Pokemon.HP <= 0)
+        {
+            yield return dialogBox.TypeDialog($"{sourceUnit.Pokemon.Base.Name} Fainted.");
+            sourceUnit.PlayerFaintAnimation();
+
+            yield return new WaitForSeconds(1f);
+
+            CheckBattleOver(sourceUnit);
         }
     }
 
@@ -170,6 +190,9 @@ public class BattleSystem : MonoBehaviour
         Pokemon source = sourceUnit.Pokemon;
         Pokemon target = targetUnit.Pokemon;
         var effects = move.Base.Effects;
+
+
+        // Stats boosting
         if (effects.Boosts != null)
         {
             if (move.Base.Target == MoveTarget.Self)
@@ -202,6 +225,12 @@ public class BattleSystem : MonoBehaviour
                 }
             }
             
+        }
+
+        // Stats condition
+        if (effects.Status != ConditionID.none)
+        {
+            target.SetStatus(effects.Status);
         }
 
         yield return ShowStatusChanges(source);

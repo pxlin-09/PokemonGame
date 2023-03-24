@@ -167,10 +167,20 @@ public class BattleUnit : MonoBehaviour
         vfx.transform.rotation = Quaternion.AngleAxis(ang, Vector3.forward);
     }
 
-    public void PlayerHitAnimation()
+    public void PlayerHitAnimation(Condition status = null)
     {
         var seq = DOTween.Sequence();
-        seq.Append(img.DOColor(Color.gray, 0.1f));
+        if (status == null)
+        {
+            seq.Append(img.DOColor(Color.gray, 0.1f));
+        } else if (status.Name == "Poison")
+        {
+            seq.Append(img.DOColor(Color.magenta, 0.1f));
+        } else if (status.Name == "Burn")
+        {
+            seq.Append(img.DOColor(Color.red, 0.1f));
+        }
+        
         seq.Append(img.DOColor(originCol, 0.1f));
     }
 

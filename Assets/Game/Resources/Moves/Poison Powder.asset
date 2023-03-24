@@ -18,9 +18,10 @@ MonoBehaviour:
   pp: 35
   power: 0
   accuracy: 75
-  category: 1
+  category: 2
   effects:
     boosts: []
+    status: 1
   target: 0
   vfxPrefab: {fileID: 8785596216506717366, guid: 3c5acfccfa74e4b0f8f88b628fd8cdcf, type: 3}
   vfxUp: {fileID: 0}
