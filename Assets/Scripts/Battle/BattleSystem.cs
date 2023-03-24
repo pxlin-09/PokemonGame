@@ -18,6 +18,7 @@ public class BattleSystem : MonoBehaviour
 
     PokemonParty playerParty;
     Pokemon wildPokemon;
+    bool setStatus = false;
 
     // Observer design pattern: gameController observes when battleSystem
     // encounters a pokemon and changes state to battle

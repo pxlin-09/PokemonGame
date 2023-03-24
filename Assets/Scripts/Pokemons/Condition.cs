@@ -14,6 +14,9 @@ public class Condition
     public Action<Pokemon> OnAfterTurn { get; set; }
 
     public Func<Pokemon, bool> OnBeforeMove { get; set; }
+
+    public Action<Pokemon> OnStart { get; set; }
+
     // Start is called before the first frame update
     void Start()
     {

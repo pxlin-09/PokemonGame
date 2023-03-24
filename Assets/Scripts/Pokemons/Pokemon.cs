@@ -23,6 +23,8 @@ public class Pokemon
 
     public Condition Status { get; private set; }
 
+    public int StatusTime { get; set; }
+
     public bool HpChange { get; set; }
 
     public void Init()
@@ -171,7 +173,12 @@ public class Pokemon
 
     public void SetStatus (ConditionID conditionId)
     {
+        if (Status != null && Status.Name == ConditionsDB.Conditions[conditionId].Name)
+        {
+            StatusChanges.Enqueue($"The move has no affected!");
+        }
         Status = ConditionsDB.Conditions[conditionId];
+        Status?.OnStart?.Invoke(this);
         StatusChanges.Enqueue($"{Base.Name} {Status.StartMessage}");
     }
 
@@ -205,6 +212,11 @@ public class Pokemon
             return cond;
         }
         return null;
+    }
+
+    public void CureStatus()
+    {
+        Status = null;
     }
 }
 
