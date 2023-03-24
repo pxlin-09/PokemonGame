@@ -69,7 +69,7 @@ public class ConditionsDB
                         pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is no longer frozen!");
                         return true;
                     }
-                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is frozen and cannot move!");
+                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is frozen!");
                     return false;
                 }
             }
@@ -96,7 +96,7 @@ public class ConditionsDB
                         return true;
                     }
                     pokemon.StatusTime--;
-                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is sleeping and cannot move!");
+                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is sleeping!");
                     return false;
                 }
             }
