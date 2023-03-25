@@ -175,25 +175,25 @@ public class BattleUnit : MonoBehaviour
         {
             seq.Append(img.DOColor(Color.gray, 0.1f));
         }
-        else if (status.Name == "Poison")
+        else if (status.ID == ConditionID.psn)
         {
             seq.Append(img.DOColor(Color.magenta, 0.1f));
         }
-        else if (status.Name == "Burn")
+        else if (status.ID == ConditionID.brn)
         {
             seq.Append(img.DOColor(Color.red, 0.1f));
         }
-        else if (status.Name == "Paralyze")
+        else if (status.ID == ConditionID.par)
         {
             seq.Append(img.DOColor(Color.yellow, 0.1f));
             Shake(seq);
         }
-        else if (status.Name == "Freeze")
+        else if (status.ID == ConditionID.frz)
         {
             seq.Append(img.DOColor(Color.blue, 0.1f));
             Shake(seq);
         }
-        else if (status.Name == "Sleep")
+        else if (status.ID == ConditionID.slp)
         {
             seq.Append(img.DOColor(Color.gray, 0.1f));
             Shake(seq);

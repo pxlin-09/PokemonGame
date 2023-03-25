@@ -12,6 +12,11 @@ public class GameController : MonoBehaviour
 
     GameState state;
 
+    private void Awake()
+    {
+        ConditionsDB.Init();
+    }
+
     // Start is called before the first frame update
     void Start()
     {

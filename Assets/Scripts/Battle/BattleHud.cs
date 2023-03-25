@@ -9,6 +9,7 @@ public class BattleHud : MonoBehaviour
     [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] TextMeshProUGUI levelText;
     [SerializeField] HPBar hpBar;
+    [SerializeField] TextMeshProUGUI statusText;
 
     Pokemon _pokemon;
     // Start is called before the first frame update
@@ -21,6 +22,14 @@ public class BattleHud : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void SetStatusText()
+    {
+        if (_pokemon.Status == null)
+        {
+            statusText.text = "";
+        }
     }
 
     public void SetData(Pokemon pokemon)
