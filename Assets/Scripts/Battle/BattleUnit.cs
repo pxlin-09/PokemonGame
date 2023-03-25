@@ -119,20 +119,21 @@ public class BattleUnit : MonoBehaviour
         Vector3 start;
         GameObject arrow = null;
         float end;
-
+        Debug.Log($"x coord is:{absOrigin.x}");
+        Debug.Log($"y coord is:{absOrigin.y}");
         if (increase)
         {
             
             end = absOrigin.y + 1f;
             if (isPlayerUnit)
             {
-                start = new Vector3(absOrigin.x - 1f,
+                start = new Vector3(absOrigin.x - 2f,
                     absOrigin.y - 0.5f,
                     absOrigin.z);
                 
             } else
             {
-                start = new Vector3(absOrigin.x + 1f,
+                start = new Vector3(absOrigin.x + 2f,
                     absOrigin.y - 0.5f,
                     absOrigin.z);
                 
@@ -143,12 +144,12 @@ public class BattleUnit : MonoBehaviour
             end = absOrigin.y - 0.5f;
             if (isPlayerUnit)
             {
-                start = new Vector3(absOrigin.x - 1f,
+                start = new Vector3(absOrigin.x - 1.5f,
                     absOrigin.y + 1f,
                     absOrigin.z);
             } else
             {
-                start = new Vector3(absOrigin.x + 1f,
+                start = new Vector3(absOrigin.x + 1.5f,
                     absOrigin.y + 1f,
                     absOrigin.z);
                 

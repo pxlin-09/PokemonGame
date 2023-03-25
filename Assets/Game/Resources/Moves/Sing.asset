@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d43b83c80d272644b87bd6163511fc88, type: 3}
   m_Name: Sing
   m_EditorClassIdentifier: 
-  _name: Thunder Wave
+  _name: Sing
   description: 
-  type: 4
+  type: 11
   pp: 20
   power: 0
   accuracy: 100
   category: 2
   effects:
     boosts: []
-    status: 4
+    status: 3
   target: 0
   vfxPrefab: {fileID: 0}
   vfxUp: {fileID: 0}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Test
   description: 
-  frontSprite: {fileID: 21300000, guid: 19798568eed8540efb931297608f8bfa, type: 3}
+  frontSprite: {fileID: 21300000, guid: 843823c80be1fe244945120519a22e53, type: 3}
   backSprite: {fileID: 21300000, guid: 19798568eed8540efb931297608f8bfa, type: 3}
   type1: 0
   type2: 0
@@ -25,5 +25,5 @@ MonoBehaviour:
   spDefense: 50
   speed: 50
   learnableMoves:
-  - moveBase: {fileID: 11400000, guid: 9481bcda6d13e4793a1b59c1e6c8213b, type: 2}
+  - moveBase: {fileID: 11400000, guid: c4d94ac783c1f4e34b5b33a057906f09, type: 2}
     level: 0
