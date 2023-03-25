@@ -134,24 +134,26 @@ public class BattleUnit : MonoBehaviour
             } else
             {
                 start = new Vector3(absOrigin.x + 2f,
-                    absOrigin.y - 0.5f,
+                    absOrigin.y - 1,
                     absOrigin.z);
                 
             }
             arrow = Instantiate(statusEffects.UpArrow, start, Quaternion.identity);
         } else
         {
-            end = absOrigin.y - 0.5f;
+            
             if (isPlayerUnit)
             {
                 start = new Vector3(absOrigin.x - 1.5f,
                     absOrigin.y + 1f,
                     absOrigin.z);
+                end = absOrigin.y - 0.5f;
             } else
             {
                 start = new Vector3(absOrigin.x + 1.5f,
                     absOrigin.y + 1f,
                     absOrigin.z);
+                end = absOrigin.y - 1f;
                 
             }
             arrow = Instantiate(statusEffects.DownArrow, start, Quaternion.identity);
