@@ -170,6 +170,7 @@ public class BattleUnit : MonoBehaviour
 
     public void PlayerHitAnimation(Condition status = null)
     {
+        if (status != null) Debug.Log(status.ID.ToString());
         var seq = DOTween.Sequence();
         if (status == null)
         {

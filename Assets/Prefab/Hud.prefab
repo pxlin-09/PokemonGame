@@ -535,7 +535,12 @@ MonoBehaviour:
   nameText: {fileID: 3874996577524452928}
   levelText: {fileID: 3874996576315128989}
   hpBar: {fileID: 3874996576438410223}
-  statusText: {fileID: 0}
+  statusText: {fileID: 7384654290069577350}
+  psnColor: {r: 0.8584906, g: 0.24701849, b: 0.751454, a: 1}
+  brnColor: {r: 0.85882354, g: 0.20392157, b: 0.20392157, a: 1}
+  parColor: {r: 0.87058824, g: 0.7058824, b: 0.0627451, a: 1}
+  frzColor: {r: 0, g: 0.827451, b: 1, a: 1}
+  slpColor: {r: 0.4811321, g: 0.47432363, b: 0.47432363, a: 1}
 --- !u!1 &3874996577524452934
 GameObject:
   m_ObjectHideFlags: 0
@@ -813,7 +818,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ABC
+  m_text: BRN
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7bf9024627ae0254ca120fc8ba92dd81, type: 2}
   m_sharedMaterial: {fileID: -6306638019914287153, guid: 7bf9024627ae0254ca120fc8ba92dd81, type: 2}
@@ -822,8 +827,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278519045
-  m_fontColor: {r: 0.01886791, g: 0.01886791, b: 0.01886791, a: 1}
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

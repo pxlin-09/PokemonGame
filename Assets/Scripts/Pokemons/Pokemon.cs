@@ -27,6 +27,8 @@ public class Pokemon
 
     public bool HpChange { get; set; }
 
+    public event System.Action OnStatusChange;
+
     public void Init()
     {
         HP = MaxHp;
@@ -178,6 +180,7 @@ public class Pokemon
         Status = ConditionsDB.Conditions[conditionId];
         Status?.OnStart?.Invoke(this);
         StatusChanges.Enqueue($"{Base.Name} {Status.StartMessage}");
+        OnStatusChange?.Invoke();
     }
 
     public void UpdateHP(int damage)
@@ -215,6 +218,7 @@ public class Pokemon
     public void CureStatus()
     {
         Status = null;
+        OnStatusChange?.Invoke();
     }
 }
 

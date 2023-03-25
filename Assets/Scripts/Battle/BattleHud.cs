@@ -11,7 +11,15 @@ public class BattleHud : MonoBehaviour
     [SerializeField] HPBar hpBar;
     [SerializeField] TextMeshProUGUI statusText;
 
+    [SerializeField] Color psnColor;
+    [SerializeField] Color brnColor;
+    [SerializeField] Color parColor;
+    [SerializeField] Color frzColor;
+    [SerializeField] Color slpColor;
+
     Pokemon _pokemon;
+    Dictionary<ConditionID, Color> statusColors;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +37,10 @@ public class BattleHud : MonoBehaviour
         if (_pokemon.Status == null)
         {
             statusText.text = "";
+        } else
+        {
+            statusText.text = _pokemon.Status.ID.ToString().ToUpper();
+            statusText.color = statusColors[_pokemon.Status.ID];
         }
     }
 
@@ -39,6 +51,16 @@ public class BattleHud : MonoBehaviour
         levelText.text = "Lvl " + pokemon.Level;
         hpBar.SetHP((float) pokemon.HP / pokemon.MaxHp);
         hpBar.SetColor((float)pokemon.HP / pokemon.MaxHp);
+        statusColors = new Dictionary<ConditionID, Color>()
+        {
+            { ConditionID.psn, psnColor },
+            { ConditionID.brn, brnColor },
+            { ConditionID.par, parColor },
+            { ConditionID.frz, frzColor },
+            { ConditionID.slp, slpColor }
+        };
+        SetStatusText();
+        _pokemon.OnStatusChange += SetStatusText;
     }
 
     public IEnumerator UpdateHP()
