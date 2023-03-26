@@ -770,7 +770,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pokemons:
   - _base: {fileID: 11400000, guid: 2728cf39b330e4b82b970b5f4f5c30a7, type: 2}
-    level: 100
+    level: 10
   - _base: {fileID: 11400000, guid: 10f62d76549444903a283f0a8fc64cf3, type: 2}
     level: 20
   - _base: {fileID: 11400000, guid: 5faedbe0380de40be8eb3042dc6dfc4d, type: 2}
@@ -11632,8 +11632,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wildPokemons:
-  - _base: {fileID: 11400000, guid: ab372ebc6322f4580977a358205009d3, type: 2}
-    level: 0
+  - _base: {fileID: 11400000, guid: 2ef17e665c9504040a0ba3d9c85041e2, type: 2}
+    level: 4
 --- !u!224 &1926526101 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5161930775735445504, guid: eaa09c6cec4f04d4dbc497a1a98db12d, type: 3}
