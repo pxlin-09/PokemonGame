@@ -12,19 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d43b83c80d272644b87bd6163511fc88, type: 3}
   m_Name: Super Sonic
   m_EditorClassIdentifier: 
-  _name: Poison Powder
+  _name: Super Sonic
   description: 
-  type: 8
+  type: 1
   pp: 35
   power: 0
   accuracy: 75
+  alwaysHits: 0
   category: 2
   effects:
     boosts: []
-    status: 1
+    status: 0
+    volatileStatus: 6
   target: 0
-  vfxPrefab: {fileID: 8785596216506717366, guid: 3c5acfccfa74e4b0f8f88b628fd8cdcf, type: 3}
+  vfxPrefab: {fileID: 0}
   vfxUp: {fileID: 0}
   vfxDown: {fileID: 0}
-  directShot: 1
+  directShot: 0
   launchToSky: 0

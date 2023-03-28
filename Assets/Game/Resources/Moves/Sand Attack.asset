@@ -10,19 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d43b83c80d272644b87bd6163511fc88, type: 3}
-  m_Name: Sing
+  m_Name: Sand Attack
   m_EditorClassIdentifier: 
-  _name: Sing
+  _name: Sand Attack
   description: 
-  type: 11
-  pp: 20
+  type: 1
+  pp: 15
   power: 0
   accuracy: 100
   alwaysHits: 0
   category: 2
   effects:
-    boosts: []
-    status: 3
+    boosts:
+    - stat: 5
+      boost: -1
+    status: 0
     volatileStatus: 0
   target: 0
   vfxPrefab: {fileID: 0}
