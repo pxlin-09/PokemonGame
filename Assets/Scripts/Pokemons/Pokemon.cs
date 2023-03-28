@@ -23,6 +23,10 @@ public class Pokemon
 
     public Condition Status { get; private set; }
 
+    public Condition VolatileStatus { get; private set; }
+
+    public int VolatileStatusTime { get; set; }
+
     public int StatusTime { get; set; }
 
     public bool HpChange { get; set; }
@@ -45,6 +49,11 @@ public class Pokemon
         CalculateStats();
         HP = MaxHp;
         ResetStatBoosts();
+        Status = null;
+        VolatileStatus = null;
+        StatusTime = 0;
+        VolatileStatusTime = 0;
+        
     }
 
     void ResetStatBoosts()
@@ -183,6 +192,17 @@ public class Pokemon
         OnStatusChange?.Invoke();
     }
 
+    public void SetVolatileStatus(ConditionID conditionId)
+    {
+        if (VolatileStatus != null)
+        {
+            StatusChanges.Enqueue($"The move has no effect!");
+        }
+        VolatileStatus = ConditionsDB.Conditions[conditionId];
+        VolatileStatus?.OnStart?.Invoke(this);
+        StatusChanges.Enqueue($"{Base.Name} {VolatileStatus.StartMessage}");
+    }
+
     public void UpdateHP(int damage)
     {
         HpChange = true;
@@ -190,13 +210,15 @@ public class Pokemon
     }
 
     public void OnBattleOver()
-    {
+    { 
+        VolatileStatus = null;
         ResetStatBoosts();
     }
 
     public Condition OnAfterTurn()
     {
         Status?.OnAfterTurn?.Invoke(this); // Null condition operator
+        VolatileStatus?.OnAfterTurn?.Invoke(this);
         return Status;
     }
 
@@ -212,6 +234,17 @@ public class Pokemon
                 };
             return cond;
         }
+
+        if (VolatileStatus?.OnBeforeMove != null)
+        {
+            ConditionDetails cond =
+                new ConditionDetails
+                {
+                    status = VolatileStatus,
+                    move = VolatileStatus.OnBeforeMove(this)
+                };
+            return cond;
+        }
         return null;
     }
 
@@ -219,6 +252,11 @@ public class Pokemon
     {
         Status = null;
         OnStatusChange?.Invoke();
+    }
+
+    public void CureVolatileStatus()
+    {
+        VolatileStatus = null;
     }
 }
 

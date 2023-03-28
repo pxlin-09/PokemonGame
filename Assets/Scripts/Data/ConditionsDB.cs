@@ -109,6 +109,41 @@ public class ConditionsDB
                     return false;
                 }
             }
+        },
+
+        // Volatile status
+        {
+            ConditionID.confusion,
+            new Condition()
+            {
+                Name = "Confusion",
+                StartMessage = "is confused!",
+                OnStart = (Pokemon pokemon) =>
+                {
+                    // Confuse for 1-3 turns
+                    pokemon.VolatileStatusTime = Random.Range(1,5);
+                    Debug.Log($"will be confused for {pokemon.VolatileStatusTime} turns");
+                },
+                OnBeforeMove = (Pokemon pokemon) =>
+                {
+                    if (pokemon.VolatileStatusTime <= 0)
+                    {
+                        pokemon.CureVolatileStatus();
+                        pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is no longer confused!");
+                        return true;
+                    }
+
+                    // 50% chance to do a move
+                    if (Random.Range(1,3) == 1)
+                    {
+                        return true;
+                    }
+                    pokemon.StatusChanges.Enqueue($"{pokemon.Base.Name} is confused!");
+                    pokemon.UpdateHP(Mathf.Max(pokemon.MaxHp / 8, 1));
+                    pokemon.StatusChanges.Enqueue($"It hurt itself due to confusion!");
+                    return false;
+                }
+            }
         }
     };
 
@@ -127,5 +162,5 @@ public class ConditionsDB
 
 public enum ConditionID
 {
-    none, psn, brn, slp, par, frz
+    none, psn, brn, slp, par, frz, confusion
 }

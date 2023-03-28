@@ -200,6 +200,9 @@ public class BattleUnit : MonoBehaviour
         {
             seq.Append(img.DOColor(Color.gray, 0.1f));
             Shake(seq);
+        } else
+        {
+            seq.Append(img.DOColor(Color.gray, 0.1f));
         }
         
         seq.Append(img.DOColor(originCol, 0.1f));

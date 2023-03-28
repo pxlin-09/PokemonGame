@@ -142,7 +142,9 @@ public class BattleSystem : MonoBehaviour
             if (!cond.move)
             {
                 sourceUnit.PlayerHitAnimation(cond.status);
+
                 yield return ShowStatusChanges(sourceUnit.Pokemon);
+                yield return sourceUnit.Hud.UpdateHP();
                 yield break;
             }
             
@@ -245,6 +247,11 @@ public class BattleSystem : MonoBehaviour
         if (effects.Status != ConditionID.none)
         {
             target.SetStatus(effects.Status);
+        }
+
+        if (effects.VolatileStatus != ConditionID.none)
+        {
+            target.SetVolatileStatus(effects.VolatileStatus);
         }
 
         yield return ShowStatusChanges(source);
