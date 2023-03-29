@@ -18,9 +18,18 @@ MonoBehaviour:
   pp: 25
   power: 40
   accuracy: 100
+  alwaysHits: 0
   category: 1
   effects:
     boosts: []
+    status: 0
+    volatileStatus: 0
+  secondaries:
+  - boosts: []
+    status: 2
+    volatileStatus: 0
+    chance: 10
+    target: 0
   target: 0
   vfxPrefab: {fileID: 4088022290884101870, guid: 70a5455ee6d8944e1a70747c3459eb3f, type: 3}
   vfxUp: {fileID: 0}
