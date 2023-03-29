@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Sand Attack
   description: 
-  type: 1
+  type: 9
   pp: 15
   power: 0
   accuracy: 100
@@ -26,9 +26,10 @@ MonoBehaviour:
       boost: -1
     status: 0
     volatileStatus: 0
+  secondaries: []
   target: 0
-  vfxPrefab: {fileID: 0}
+  vfxPrefab: {fileID: 8785596216506717366, guid: 82b31c372c62f46d6a6c04c921142df6, type: 3}
   vfxUp: {fileID: 0}
   vfxDown: {fileID: 0}
-  directShot: 0
+  directShot: 1
   launchToSky: 0
