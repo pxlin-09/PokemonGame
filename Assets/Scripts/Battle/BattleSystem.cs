@@ -542,9 +542,6 @@ public class BattleSystem : MonoBehaviour
                 state = BattleState.Busy;
                 StartCoroutine(SwitchPokemon(selectedPokemon));
             }
-
-            state = BattleState.Busy;
-            StartCoroutine(SwitchPokemon(selectedPokemon));
         } else if (Input.GetKeyDown(KeyCode.X))
         {
             partyScreen.gameObject.SetActive(false);
@@ -562,7 +559,6 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator SwitchPokemon(Pokemon newPokemon)
     {
-        state = BattleState.Busy;
         if (playerUnit.Pokemon.HP > 0)
         {
             yield return
