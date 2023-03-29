@@ -93,17 +93,6 @@ public class BattleSystem : MonoBehaviour
         dialogBox.EnableMoveSelector(true);
     }
 
-    /*void ChooseFirstTurn()
-    {
-        if (playerUnit.Pokemon.Speed >= enemyUnit.Pokemon.Speed)
-        {
-            ActionSelection();
-        } else
-        {
-            StartCoroutine(EnemyMove());
-        }
-    }*/
-
     void BattleOver(bool won)
     {
         state = BattleState.BattleOver;
@@ -164,31 +153,7 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    /*IEnumerator PlayerMove()
-    {
-        state = BattleState.RunningTurn;
-        var move = playerUnit.Pokemon.Moves[currentMove];
-        yield return RunMove(playerUnit, enemyUnit, move);
-
-        if (state == BattleState.RunningTurn)
-        {
-            StartCoroutine(EnemyMove());
-        }
-    }*/
-
-    /*IEnumerator EnemyMove()
-    {
-        state = BattleState.RunningTurn;
-        var move = enemyUnit.Pokemon.GetRandMove();
-        yield return RunMove(enemyUnit, playerUnit, move);
-
-        if (state == BattleState.RunningTurn)
-        {
-            ActionSelection();
-        }
-        
-    }*/
-
+    
     IEnumerator RunMove(BattleUnit sourceUnit, BattleUnit targetUnit, Move move)
     {
         ConditionDetails cond = sourceUnit.Pokemon.OnBeforeTurn();
