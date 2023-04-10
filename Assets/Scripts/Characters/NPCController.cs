@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NPCController : MonoBehaviour, Interactable
 {
+    [SerializeField] Dialog dialog;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,6 @@ public class NPCController : MonoBehaviour, Interactable
 
     public void Interact()
     {
-        Debug.Log("Interacting");
+        StartCoroutine(DialogManager.Instance.ShowDialog(dialog));
     }
 }
