@@ -47,6 +47,11 @@ public class PlayerController : MonoBehaviour
             }
         }
         animator.SetBool("isMoving", isMoving);
+
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            Interact();
+        }
     }
 
     IEnumerator Move(Vector3 targetPos)
@@ -82,6 +87,18 @@ public class PlayerController : MonoBehaviour
                 animator.SetBool("isMoving", false);
                 onEncountered();
             }
+        }
+    }
+
+    void Interact()
+    {
+        var facingDir = new Vector3(animator.GetFloat("moveX"), animator.GetFloat("moveY"));
+        var interactPos = transform.position + facingDir;
+
+        var collider = Physics2D.OverlapCircle(interactPos, .3f, interactableLayer);
+        if (collider != null)
+        {
+            collider.GetComponent<Interactable>()?.Interact();
         }
     }
 }
