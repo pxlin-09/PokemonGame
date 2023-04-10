@@ -11,6 +11,7 @@ public class MoveBase : ScriptableObject
     [SerializeField] string description;
     [SerializeField] PokemonType type;
     [SerializeField] int pp;
+    [SerializeField] int priority;
     [SerializeField] int power;
     [SerializeField] int accuracy;
     [SerializeField] bool alwaysHits;
@@ -37,6 +38,8 @@ public class MoveBase : ScriptableObject
     public string Name { get { return _name; } }
 
     public int PP { get { return pp; } }
+
+    public int Priority { get { return priority; } }
 
     public int Power { get { return power; } }
 

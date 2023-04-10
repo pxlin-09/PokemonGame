@@ -87,6 +87,18 @@ public class BattleDialogBox : MonoBehaviour
             {
                 moveTexts[i].color = Color.black;
             }
+            if (move.PP == 0)
+            {
+                ppText.color = Color.red;
+            }
+            else if (move.PP <= move.Base.PP / 2)
+            {
+                ppText.color = new Color(1f, 0.647f, 0f);
+            }
+            else
+            {
+                ppText.color = Color.black;
+            }
         }
 
         ppText.text = $"PP {move.PP}/{move.Base.PP}";

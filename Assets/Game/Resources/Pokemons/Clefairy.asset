@@ -10,22 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e124e85c8f8d3fe4090013798c6f7590, type: 3}
-  m_Name: Test
+  m_Name: Clefairy
   m_EditorClassIdentifier: 
-  _name: Test
+  _name: Clefairy
   description: 
-  frontSprite: {fileID: 21300000, guid: 843823c80be1fe244945120519a22e53, type: 3}
-  backSprite: {fileID: 21300000, guid: 19798568eed8540efb931297608f8bfa, type: 3}
-  type1: 0
+  frontSprite: {fileID: 21300000, guid: 4e8d014e8256546df944b8a07291b2ed, type: 3}
+  backSprite: {fileID: 21300000, guid: 9c69387d614634bcbbd5d2cd14351a3b, type: 3}
+  type1: 11
   type2: 0
-  maxHp: 1000
-  attack: 50
-  defense: 50
-  spAttack: 50
-  spDefense: 50
-  speed: 50
+  maxHp: 70
+  attack: 45
+  defense: 48
+  spAttack: 60
+  spDefense: 65
+  speed: 35
   learnableMoves:
-  - moveBase: {fileID: 11400000, guid: a612a675c2d8c432dbc59a93746a755b, type: 2}
-    level: 0
+  - moveBase: {fileID: 11400000, guid: 773453960eec54709a640d7c4f7adde4, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: f2a6f6425d01b416c8f8166bd3203a96, type: 2}
+    level: 1
   - moveBase: {fileID: 11400000, guid: 7088abbf4821fb747b0a330ebdba15d2, type: 2}
-    level: 0
+    level: 1

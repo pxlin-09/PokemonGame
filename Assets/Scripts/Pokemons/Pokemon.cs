@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 [System.Serializable]
@@ -160,8 +161,9 @@ public class Pokemon
 
     public Move GetRandMove()
     {
-        int random = Random.Range(0, Moves.Count);
-        return Moves[random];
+        var movesWithPP = Moves.Where(x => x.PP > 0).ToList();
+        int random = Random.Range(0, movesWithPP.Count);
+        return movesWithPP[random];
     }
 
     public void ApplyBoosts(List<StatBoost> statBoosts)
@@ -170,10 +172,17 @@ public class Pokemon
         {
             var stat = statBoost.stat;
             var boost = statBoost.boost;
-
+            var before = StatBoosts[stat];
             StatBoosts[stat] = Mathf.Clamp(StatBoosts[stat] + boost, -6, 6);
 
-            if (boost >= 0)
+            if (before == 6 && boost > 0)
+            {
+                StatusChanges.Enqueue($"{Base.Name}'s {stat} cannot increase any further!");
+            } else if (before == -6 && boost < 0)
+            {
+                StatusChanges.Enqueue($"{Base.Name}'s {stat} cannot decrease any further!");
+            }
+            else if (boost >= 0)
             {
                 StatusChanges.Enqueue($"{Base.Name}'s {stat} has increased!");
             } else
