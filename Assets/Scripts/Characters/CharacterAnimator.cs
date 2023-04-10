@@ -11,7 +11,7 @@ public class CharacterAnimator : MonoBehaviour
 
     public float MoveX { get; set; }
     public float MoveY { get; set; }
-    public bool isMoving { get; set; }
+    public bool IsMoving { get; set; }
 
     // States
     SpriteAnimator walkDownAnim;
@@ -55,11 +55,11 @@ public class CharacterAnimator : MonoBehaviour
             currentAnim = walkDownAnim;
         }
 
-        if (currentAnim != prevAnim || isMoving != wasMoving)
+        if (currentAnim != prevAnim || IsMoving != wasMoving)
         {
             currentAnim.Start();
         }
-        if (isMoving)
+        if (IsMoving)
         {
             currentAnim.HandleUpdate();
         } else
@@ -67,6 +67,6 @@ public class CharacterAnimator : MonoBehaviour
             spriteRenderer.sprite = currentAnim.Frames[0];
         }
 
-        wasMoving = isMoving;
+        wasMoving = IsMoving;
     }
 }

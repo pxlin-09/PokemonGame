@@ -5,13 +5,8 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed;
-    public LayerMask solidObjectLayer;
-    public LayerMask interactableLayer;
-    public LayerMask longGrassLayer;
-    private bool isMoving;
     private Vector2 input;
-    private CharacterAnimator animator;
+    private Character character;
 
     // Observer design pattern: gameController observes when playController
     // encounters a pokemon and changes state to battle
@@ -19,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        animator = GetComponent<CharacterAnimator>();
+        character = GetComponent<Character>();
     }
     // Start is called before the first frame update
     void Start()
@@ -30,61 +25,32 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     public void HandleUpdate()
     {
-        if (!isMoving)
+        if (!character.IsMoving)
         {
             input.x = Input.GetAxisRaw("Horizontal");
             input.y = Input.GetAxisRaw("Vertical");
             if (input.x != 0) input.y = 0;
             if (input != Vector2.zero)
             {
-                animator.MoveX = input.x;
-                animator.MoveY = input.y;
-                var targetPos = transform.position;
-                targetPos.x += input.x;
-                targetPos.y += input.y;
-
-                if (isWalkable(targetPos)) StartCoroutine(Move(targetPos));
+                StartCoroutine(character.Move(input, CheckForEncounters));
             }
         }
-        animator.isMoving = isMoving;
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
             Interact();
         }
-    }
-
-    IEnumerator Move(Vector3 targetPos)
-    {
-        isMoving = true;
-        while ((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
-            yield return null;
-        }
-        transform.position = targetPos;
-        isMoving = false;
-
-        CheckForEncounters();
-    }
-
-    private bool isWalkable(Vector3 targetPos)
-    {
-        if (Physics2D.OverlapCircle(targetPos, 0.2f, solidObjectLayer | interactableLayer) != null)
-        {
-            return false;
-        }
-        return true;
+        character.HandleUpdate();
     }
 
     private void CheckForEncounters()
     {
-        if (Physics2D.OverlapCircle(transform.position, 0.2f, longGrassLayer) != null)
+        if (Physics2D.OverlapCircle(transform.position, 0.2f, GameLayers.i.LongGrassLayer) != null)
         {
             Debug.Log("GRASS");
             if (UnityEngine.Random.Range(1,101) <= 15)
             {
-                animator.isMoving = false;
+                character.Animator.IsMoving = false;
                 onEncountered();
             }
         }
@@ -92,10 +58,10 @@ public class PlayerController : MonoBehaviour
 
     void Interact()
     {
-        var facingDir = new Vector3(animator.MoveX, animator.MoveY);
+        var facingDir = new Vector3(character.Animator.MoveX, character.Animator.MoveY);
         var interactPos = transform.position + facingDir;
 
-        var collider = Physics2D.OverlapCircle(interactPos, .3f, interactableLayer);
+        var collider = Physics2D.OverlapCircle(interactPos, .3f, GameLayers.i.InteractableLayer);
         if (collider != null)
         {
             collider.GetComponent<Interactable>()?.Interact();

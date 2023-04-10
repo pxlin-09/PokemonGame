@@ -743,6 +743,7 @@ GameObject:
   - component: {fileID: 288011803}
   - component: {fileID: 288011807}
   - component: {fileID: 288011808}
+  - component: {fileID: 288011809}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -762,16 +763,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbf3f7c8540713d42945b5d0ae746f68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  solidObjectLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 2048
-  longGrassLayer:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!212 &288011804
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -897,6 +888,19 @@ MonoBehaviour:
   - {fileID: -790699523677361007, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
   - {fileID: 8470420716495695676, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
   - {fileID: 6167071470516247665, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
+--- !u!114 &288011809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288011802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b49df523449244774b784e1736109bbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
 --- !u!1 &303884213
 GameObject:
   m_ObjectHideFlags: 0
@@ -1371,6 +1375,7 @@ GameObject:
   - component: {fileID: 475618762}
   - component: {fileID: 475618761}
   - component: {fileID: 475618763}
+  - component: {fileID: 475618764}
   m_Layer: 0
   m_Name: GameController
   m_TagString: Untagged
@@ -1423,6 +1428,27 @@ MonoBehaviour:
   dialogBox: {fileID: 1077126768}
   dialogText: {fileID: 1190723013}
   lettersPerSecond: 45
+--- !u!114 &475618764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475618760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fcba6587bb1d492ea31ffb527f9f505, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  solidObjectLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  interactableLayer:
+    serializedVersion: 2
+    m_Bits: 2048
+  longGrassLayer:
+    serializedVersion: 2
+    m_Bits: 512
 --- !u!1 &487653500
 GameObject:
   m_ObjectHideFlags: 0
