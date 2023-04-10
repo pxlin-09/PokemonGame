@@ -741,8 +741,8 @@ GameObject:
   - component: {fileID: 288011805}
   - component: {fileID: 288011804}
   - component: {fileID: 288011803}
-  - component: {fileID: 288011806}
   - component: {fileID: 288011807}
+  - component: {fileID: 288011808}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -840,26 +840,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &288011806
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 288011802}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 053a2014cd47af345acbfda9deb6ee9e, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &288011807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -885,6 +865,38 @@ MonoBehaviour:
     level: 7
   - _base: {fileID: 11400000, guid: d4002676fc81b4a429a7b696ccc4362b, type: 2}
     level: 7
+--- !u!114 &288011808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288011802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fae69922986c6443fac3eb71d7b3691d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkDownSprites:
+  - {fileID: 7152930139536384079, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
+  - {fileID: -5725962078152895296, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
+  - {fileID: -8401692288953904933, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
+  - {fileID: 7888922196035610388, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
+  walkUpSprites:
+  - {fileID: -4445699719359273135, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
+  - {fileID: 1892806461834874077, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
+  - {fileID: -8627026541424588849, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
+  - {fileID: -6780520195603233165, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
+  walkLeftSprites:
+  - {fileID: -1038918931832879880, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
+  - {fileID: 2690600881683387669, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
+  - {fileID: 6634202828824015816, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
+  - {fileID: -5008138227279614530, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
+  walkRightSprites:
+  - {fileID: -3303779423006393323, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
+  - {fileID: -790699523677361007, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
+  - {fileID: 8470420716495695676, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
+  - {fileID: 6167071470516247665, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
 --- !u!1 &303884213
 GameObject:
   m_ObjectHideFlags: 0
@@ -9971,7 +9983,7 @@ MonoBehaviour:
   dialog:
     lines:
     - "Hi, pokemon trainer! \u25BC"
-    - "Did you know that when you want in tall grass, \u25BC"
+    - "Did you know that when you want in tall grass \u25BC"
     - You can encounter wild pokemons!
 --- !u!1 &990738245
 GameObject:

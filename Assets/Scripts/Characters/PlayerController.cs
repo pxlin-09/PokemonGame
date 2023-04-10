@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask longGrassLayer;
     private bool isMoving;
     private Vector2 input;
-    private Animator animator;
+    private CharacterAnimator animator;
 
     // Observer design pattern: gameController observes when playController
     // encounters a pokemon and changes state to battle
@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponent<CharacterAnimator>();
     }
     // Start is called before the first frame update
     void Start()
@@ -37,8 +37,8 @@ public class PlayerController : MonoBehaviour
             if (input.x != 0) input.y = 0;
             if (input != Vector2.zero)
             {
-                animator.SetFloat("moveX", input.x);
-                animator.SetFloat("moveY", input.y);
+                animator.MoveX = input.x;
+                animator.MoveY = input.y;
                 var targetPos = transform.position;
                 targetPos.x += input.x;
                 targetPos.y += input.y;
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
                 if (isWalkable(targetPos)) StartCoroutine(Move(targetPos));
             }
         }
-        animator.SetBool("isMoving", isMoving);
+        animator.isMoving = isMoving;
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("GRASS");
             if (UnityEngine.Random.Range(1,101) <= 15)
             {
-                animator.SetBool("isMoving", false);
+                animator.isMoving = false;
                 onEncountered();
             }
         }
@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
 
     void Interact()
     {
-        var facingDir = new Vector3(animator.GetFloat("moveX"), animator.GetFloat("moveY"));
+        var facingDir = new Vector3(animator.MoveX, animator.MoveY);
         var interactPos = transform.position + facingDir;
 
         var collider = Physics2D.OverlapCircle(interactPos, .3f, interactableLayer);

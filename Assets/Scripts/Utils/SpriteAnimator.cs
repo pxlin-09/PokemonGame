@@ -11,6 +11,11 @@ public class SpriteAnimator
     int currentFrame;
     float timer;
 
+    public List<Sprite> Frames
+    {
+        get { return frames; }
+    }
+
     public SpriteAnimator(List<Sprite> frames, SpriteRenderer spriteRenderer, float frameRate=0.16f)
     {
         this.frames = frames;
