@@ -40,7 +40,7 @@ public class Character : MonoBehaviour
         targetPos.x += moveVec.x;
         targetPos.y += moveVec.y;
 
-        if (!isWalkable(targetPos)) yield break;
+        if (!IsPathClear(targetPos)) yield break;
 
         IsMoving = true;
         while ((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
@@ -57,6 +57,21 @@ public class Character : MonoBehaviour
     public void HandleUpdate()
     {
         animator.IsMoving = IsMoving;
+    }
+
+    private bool IsPathClear(Vector3 targetPos)
+    {
+        var diff = targetPos - transform.position;
+        var dir = diff.normalized;
+        if (Physics2D.BoxCast(transform.position + dir, new Vector2(.2f, .2f),
+            0f, dir, diff.magnitude - 1,
+            GameLayers.i.SolidObjectLayer |
+            GameLayers.i.InteractableLayer |
+            GameLayers.i.PlayerLayer) == true)
+        {
+            return false;
+        }
+        return true;
     }
 
     private bool isWalkable(Vector3 targetPos)

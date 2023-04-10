@@ -7,6 +7,7 @@ public class GameLayers : MonoBehaviour
     [SerializeField] LayerMask solidObjectLayer;
     [SerializeField] LayerMask interactableLayer;
     [SerializeField] LayerMask longGrassLayer;
+    [SerializeField] LayerMask playerLayer;
 
     public static GameLayers i { get; private set; }
 
@@ -23,6 +24,11 @@ public class GameLayers : MonoBehaviour
     public LayerMask LongGrassLayer
     {
         get => longGrassLayer;
+    }
+
+    public LayerMask PlayerLayer
+    {
+        get => playerLayer;
     }
 
     private void Awake()
