@@ -11712,7 +11712,7 @@ MonoBehaviour:
   movementPattern:
   - {x: 0, y: 2}
   - {x: 0, y: -2}
-  timeBetweenPattern: 1.5
+  timeBetweenPattern: 0.75
 --- !u!212 &1464671634
 SpriteRenderer:
   m_ObjectHideFlags: 0

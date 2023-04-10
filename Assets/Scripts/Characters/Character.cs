@@ -23,19 +23,19 @@ public class Character : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    public IEnumerator Move(Vector2 moveVec, Action OnMoveOver=null)
+    public IEnumerator Move(Vector2 moveVec, Action OnMoveOver = null)
     {
         animator.MoveX = Mathf.Clamp(moveVec.x, -1, 1);
-        animator.MoveY = Mathf.Clamp(moveVec.y,-1, 1);
+        animator.MoveY = Mathf.Clamp(moveVec.y, -1, 1);
         var targetPos = transform.position;
         targetPos.x += moveVec.x;
         targetPos.y += moveVec.y;
@@ -72,6 +72,21 @@ public class Character : MonoBehaviour
             return false;
         }
         return true;
+    }
+
+    public void LookTowards(Vector3 targetPos)
+    {
+        var deltaX = Mathf.Floor(targetPos.x) - Mathf.Floor(transform.position.x);
+        var deltaY = Mathf.Floor(targetPos.y) - Mathf.Floor(transform.position.y);
+
+        if (deltaX == 0 || deltaY == 0)
+        {
+            animator.MoveX = Mathf.Clamp(deltaX, -1f, 1f);
+            animator.MoveY = Mathf.Clamp(deltaY, -1f, 1f);
+        } else
+        {
+            Debug.LogError("error in look towards, cannot look in such direction!");
+        }
     }
 
     private bool isWalkable(Vector3 targetPos)
