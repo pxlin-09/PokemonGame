@@ -890,6 +890,7 @@ MonoBehaviour:
   - {fileID: -790699523677361007, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
   - {fileID: 8470420716495695676, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
   - {fileID: 6167071470516247665, guid: 3111f23cd57d2be48b2ee6bac4a23588, type: 3}
+  defaultDirection: 1
 --- !u!114 &288011809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10203,6 +10204,7 @@ MonoBehaviour:
   - {fileID: 1949045276, guid: 999540a9b5f6cd143ae56c4d78538e65, type: 3}
   - {fileID: 678388205, guid: 999540a9b5f6cd143ae56c4d78538e65, type: 3}
   - {fileID: -193681518, guid: 999540a9b5f6cd143ae56c4d78538e65, type: 3}
+  defaultDirection: 1
 --- !u!1 &990738245
 GameObject:
   m_ObjectHideFlags: 0
@@ -11790,6 +11792,7 @@ MonoBehaviour:
   - {fileID: 1949045276, guid: 999540a9b5f6cd143ae56c4d78538e65, type: 3}
   - {fileID: 678388205, guid: 999540a9b5f6cd143ae56c4d78538e65, type: 3}
   - {fileID: -193681518, guid: 999540a9b5f6cd143ae56c4d78538e65, type: 3}
+  defaultDirection: 1
 --- !u!61 &1464671631
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13216,6 +13219,7 @@ MonoBehaviour:
   - {fileID: 1949045276, guid: 999540a9b5f6cd143ae56c4d78538e65, type: 3}
   - {fileID: 678388205, guid: 999540a9b5f6cd143ae56c4d78538e65, type: 3}
   - {fileID: -193681518, guid: 999540a9b5f6cd143ae56c4d78538e65, type: 3}
+  defaultDirection: 3
 --- !u!61 &2011746299
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -13347,6 +13351,7 @@ MonoBehaviour:
   dialog:
     lines:
     - Let's battle!
+  fov: {fileID: 1019086817}
   exclamation: {fileID: 470116709}
 --- !u!1 &2020689344
 GameObject:

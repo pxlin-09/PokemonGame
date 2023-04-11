@@ -5,6 +5,7 @@ using UnityEngine;
 public class TrainerController : MonoBehaviour
 {
     [SerializeField] Dialog dialog;
+    [SerializeField] GameObject fov;
     [SerializeField] GameObject exclamation;
 
     Character character;
@@ -17,7 +18,7 @@ public class TrainerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        SetFovRotation(character.Animator.DefaultDirection);
     }
 
     // Update is called once per frame
@@ -44,5 +45,28 @@ public class TrainerController : MonoBehaviour
         {
             Debug.Log("Start battle!");
         }));
+    }
+
+    public void SetFovRotation(FacingDirection dir)
+    {
+        float angle = 0f;
+        if (dir == FacingDirection.Right)
+        {
+            angle = 90f;
+        }
+        else if (dir == FacingDirection.Left)
+        {
+            angle = 270f;
+        }
+        else if (dir == FacingDirection.Up)
+        {
+            angle = 180f;
+        }
+        else if (dir == FacingDirection.Down)
+        {
+            angle = 0f;
+        }
+
+        fov.transform.eulerAngles = new Vector3(0f, 0f, angle);
     }
 }
