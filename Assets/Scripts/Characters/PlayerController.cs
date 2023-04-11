@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     // Observer design pattern: gameController observes when playController
     // encounters a pokemon and changes state to battle
     public event Action onEncountered;
+    public event Action<Collider2D> onEnterTrainersView;
 
     private void Awake()
     {
@@ -32,7 +33,7 @@ public class PlayerController : MonoBehaviour
             if (input.x != 0) input.y = 0;
             if (input != Vector2.zero)
             {
-                StartCoroutine(character.Move(input, CheckForEncounters));
+                StartCoroutine(character.Move(input, OnMoveOver));
             }
         }
 
@@ -41,6 +42,12 @@ public class PlayerController : MonoBehaviour
             Interact();
         }
         character.HandleUpdate();
+    }
+
+    private void OnMoveOver()
+    {
+        CheckForEncounters();
+        CheckForInTrainersView();
     }
 
     private void CheckForEncounters()
@@ -53,6 +60,16 @@ public class PlayerController : MonoBehaviour
                 character.Animator.IsMoving = false;
                 onEncountered();
             }
+        }
+    }
+
+    private void CheckForInTrainersView()
+    {
+        var collider = Physics2D.OverlapCircle(transform.position, 0.2f, GameLayers.i.FovLayer);
+        if (collider != null)
+        {
+            character.Animator.IsMoving = false;
+            onEnterTrainersView?.Invoke(collider);
         }
     }
 
