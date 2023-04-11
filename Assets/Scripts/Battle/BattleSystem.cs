@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum BattleState { Start, ActionSelection, MoveSelection, RunningTurn,
     Busy, PartyScreen, BattleOver}
@@ -18,8 +19,16 @@ public class BattleSystem : MonoBehaviour
 
     [SerializeField] PartyScreen partyScreen;
 
+    [SerializeField] Image playerImage;
+    [SerializeField] Image trainerImage;
+
     PokemonParty playerParty;
+    PokemonParty trainerParty;
     Pokemon wildPokemon;
+
+    bool isTrainerBattle = false;
+    PlayerController player;
+    TrainerController trainer;
 
     // Observer design pattern: gameController observes when battleSystem
     // encounters a pokemon and changes state to battle
@@ -36,6 +45,21 @@ public class BattleSystem : MonoBehaviour
     {
         this.playerParty = playerParty;
         this.wildPokemon = wildPokemon;
+        isTrainerBattle = false;
+        currentAction = 0;
+        currentMove = 0;
+        currentMember = 0;
+        StartCoroutine(SetupBattle());
+    }
+
+    // Start is called before the first frame update
+    public void StartTrainerBattle(PokemonParty playerParty, PokemonParty trainerParty)
+    {
+        this.playerParty = playerParty;
+        this.trainerParty = trainerParty;
+        isTrainerBattle = true;
+        player = playerParty.GetComponent<PlayerController>();
+        trainer = trainerParty.GetComponent<TrainerController>();
         currentAction = 0;
         currentMove = 0;
         currentMember = 0;
@@ -58,20 +82,52 @@ public class BattleSystem : MonoBehaviour
 
     public IEnumerator SetupBattle()
     {
-        dialogBox.EnableActionSelector(false);
-        dialogBox.EnableMoveSelector(false);
-        dialogBox.EnableDialogText(true);
-        playerUnit.Setup(playerParty.getHealthyPokemon());
+        //dialogBox.EnableActionSelector(false);
+        //dialogBox.EnableMoveSelector(false);
+        //dialogBox.EnableDialogText(true);
+        playerUnit.Clear();
+        enemyUnit.Clear();
         playerUnit.IsPlayerUnit = true;
-
-        enemyUnit.Setup(wildPokemon);
         enemyUnit.IsPlayerUnit = false;
+        if (!isTrainerBattle) // wild pokemon encounter
+        {
+            playerUnit.Setup(playerParty.getHealthyPokemon());
+            enemyUnit.Setup(wildPokemon);
+            dialogBox.SetMoveNames(playerUnit.Pokemon.Moves);
+            yield return StartCoroutine(dialogBox.TypeDialog($"A wild {enemyUnit.Pokemon.Base.Name} appeared."));
 
+        }
+        else // trainer battle
+        {
+            playerUnit.gameObject.SetActive(false);
+            enemyUnit.gameObject.SetActive(false);
+
+            playerImage.gameObject.SetActive(true);
+            playerImage.sprite = player.Sprite;
+            trainerImage.gameObject.SetActive(true);
+            trainerImage.sprite = trainer.Sprite;
+
+            yield return dialogBox.TypeDialog($"{trainer.Name} has challenged you to a battle!");
+
+            // trainer send out pokemon
+            trainerImage.gameObject.SetActive(false);
+            enemyUnit.gameObject.SetActive(true);
+            var enemyPokemon = trainerParty.getHealthyPokemon();
+            enemyUnit.Setup(enemyPokemon);
+            yield return dialogBox.TypeDialog($"{trainer.Name} sent out {enemyPokemon.Base.Name}!");
+
+            // player send out pokemon
+            playerImage.gameObject.SetActive(false);
+            playerUnit.gameObject.SetActive(true);
+            var playerPokemon = playerParty.getHealthyPokemon();
+            playerUnit.Setup(playerPokemon);
+            yield return dialogBox.TypeDialog($"Go {playerPokemon.Base.Name}!");
+            dialogBox.SetMoveNames(playerUnit.Pokemon.Moves);
+        }
+
+        
         partyScreen.Init();
-
-        dialogBox.SetMoveNames(playerUnit.Pokemon.Moves);
-        yield return StartCoroutine(dialogBox.TypeDialog($"A wild {enemyUnit.Pokemon.Base.Name} appeared."));
-
+        
         ActionSelection();
     }
 
@@ -370,7 +426,23 @@ public class BattleSystem : MonoBehaviour
             }
         } else
         {
-            BattleOver(true);
+            if (!isTrainerBattle)
+            {
+                BattleOver(true);
+            }
+            else
+            {
+                enemyUnit.Clear();
+                var nextPokemon = trainerParty.getHealthyPokemon();
+                if (nextPokemon != null)
+                {
+                    StartCoroutine(SendNextTrainerPokemon(nextPokemon));
+                } else
+                {
+                    BattleOver(true);
+                }
+            }
+            
         }
     }
     IEnumerator ShowDamageDetails(DamageDetails damageDetails)
@@ -551,6 +623,16 @@ public class BattleSystem : MonoBehaviour
 
         state = BattleState.RunningTurn;
         
+    }
+
+    IEnumerator SendNextTrainerPokemon(Pokemon nextPokemon)
+    {
+        state = BattleState.Busy;
+
+        enemyUnit.Setup(nextPokemon);
+        yield return dialogBox.TypeDialog($"{trainer.Name} send out {nextPokemon.Base.Name}!");
+
+        state = BattleState.RunningTurn;
     }
 
     IEnumerator ShowStatusChanges(Pokemon pokemon)

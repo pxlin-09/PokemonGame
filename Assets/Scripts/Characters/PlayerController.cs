@@ -5,6 +5,8 @@ using System;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] string _name;
+    [SerializeField] Sprite sprite;
     private Vector2 input;
     private Character character;
 
@@ -21,6 +23,16 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         
+    }
+
+    public Sprite Sprite
+    {
+        get => sprite;
+    }
+
+    public string Name
+    {
+        get => _name;
     }
 
     // Update is called once per frame

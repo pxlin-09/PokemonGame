@@ -55,8 +55,14 @@ public class BattleUnit : MonoBehaviour
             img.sprite = Pokemon.Base.FrontSprite;
         }
         img.color = originCol;
+        hud.gameObject.SetActive(true);
         hud.SetData(pokemon);
         PlayerEnterAnimation();
+    }
+
+    public void Clear()
+    {
+        Hud.gameObject.SetActive(false);
     }
 
     public void PlayerEnterAnimation()
@@ -219,6 +225,7 @@ public class BattleUnit : MonoBehaviour
 
     public void PlayerFaintAnimation()
     {
+        Clear();
         var seq = DOTween.Sequence();
         seq.Append(img.transform.DOLocalMoveY(origin.y - 150f, 0.25f));
         seq.Join(img.DOFade(0f, 0.25f));
