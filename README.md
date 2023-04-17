@@ -19,3 +19,28 @@ To test out the project, simply install the correct unity version (the one that 
 If the correct version cannot be found, install any version of unity, load the project, and try to open it. The Unity Hub will pop up a message asking if you want to open the project using the same version it was created in, click yes, and it will install and open the project in the correct version.
 
 ### Pictures of Game
+
+<img width=500 src="https://github.com/pxlin-09/PokemonGame/blob/main/Screenshots/basic%20game%20screen.png"/>
+
+#### figure 1. Unity editor view
+
+<img width=500 src="https://github.com/pxlin-09/PokemonGame/blob/main/Screenshots/dialog%20screen.png"/>
+
+#### figure 2. NPC dialog with user
+
+<img width=500 src="https://github.com/pxlin-09/PokemonGame/blob/main/Screenshots/npc%20battle.png"/>
+
+#### figure 3. Trainer NPC will notice when user walks into their sight
+
+<img width=500 src="https://github.com/pxlin-09/PokemonGame/blob/main/Screenshots/wild%20pokemon.png"/>
+
+#### figure 4. Random wild pokemons will battle the user when walking in tall grass
+
+<img width=500 src="https://github.com/pxlin-09/PokemonGame/blob/main/Screenshots/wild%20battle.png"/>
+
+#### figure 5. Pokemon battles
+
+<img width=500 src="https://github.com/pxlin-09/PokemonGame/blob/main/Screenshots/bag%20screen.png"/>
+
+#### figure 6. Change pokemon screen
+
