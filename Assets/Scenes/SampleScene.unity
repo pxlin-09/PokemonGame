@@ -849,7 +849,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pokemons:
   - _base: {fileID: 11400000, guid: 19733b2e43402014d865672205b6d3ed, type: 2}
-    level: 7
+    level: 17
   - _base: {fileID: 11400000, guid: 2728cf39b330e4b82b970b5f4f5c30a7, type: 2}
     level: 10
   - _base: {fileID: 11400000, guid: 10f62d76549444903a283f0a8fc64cf3, type: 2}
@@ -10229,7 +10229,7 @@ MonoBehaviour:
   dialog:
     lines:
     - "Hi, pokemon trainer! \u25BC"
-    - "Did you know that when you want in tall grass \u25BC"
+    - "Did you know that when you walk in tall grass \u25BC"
     - You can encounter wild pokemons!
   movementPattern:
   - {x: 2, y: 0}
@@ -11935,7 +11935,7 @@ MonoBehaviour:
   dialog:
     lines:
     - "Hi, pokemon trainer! \u25BC"
-    - "Did you know that when you want in tall grass \u25BC"
+    - "Did you know that when you walk in tall grass \u25BC"
     - You can encounter wild pokemons!
   movementPattern:
   - {x: 0, y: 2}
